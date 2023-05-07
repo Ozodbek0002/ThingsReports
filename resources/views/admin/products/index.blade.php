@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a class="btn btn-primary" href="{{route('admin.books.create')}}">
+                        <a class="btn btn-primary" href="{{route('admin.products.create')}}">
                             <span class="btn-label">
                                 <i class="fa fa-plus"></i>
                             </span>
@@ -58,7 +58,7 @@
                                 <td class="col-1">{{($books->currentpage()-1)*($books->perpage())+$ind+1}}</td>
                                 <td>{{ $book->title  }}</td>
                                 <td>
-                                    <img src="{{asset('books/'.$book->image)}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('products/'.$book->image)}}" alt="" width="100px" height="100px">
                                 </td>
                                 <td>{{ $book->category->name }}</td>
 
@@ -81,7 +81,7 @@
                                     </button>
 
                                     <a class="btn btn-warning btn-sm"
-                                       href="{{ route('admin.books.edit',$book->id) }}">
+                                       href="{{ route('admin.products.edit',$book->id) }}">
                                             <span class="btn-label">
                                                 <i class="bx bx-pen"></i>
                                             </span>
@@ -134,7 +134,7 @@
                                                             aria-label="Close"></button>
                                                 </div>
 
-                                                <form action="{{route('admin.books.destroy',$book->id)}}" method="post">
+                                                <form action="{{route('admin.products.destroy',$book->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
 

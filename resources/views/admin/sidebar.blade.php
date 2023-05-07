@@ -69,6 +69,7 @@
     <div class="menu-inner-shadow"></div>
     <hr>
 
+
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item {{ Route::is('admin.dashboard') ? 'active' : '' }}">
@@ -78,31 +79,44 @@
             </a>
         </li>
 
-
         <!-- Main -->
-        <li class="menu-item {{ Route::is('admin.books') ? 'active' : '' }}">
-{{--            <a href="{{route('admin.books')}}" class="menu-link ">--}}
-                <i class="menu-icon tf-icons bx bx-book"></i>
-                <div data-i18n="Tables">Kitoblar</div>
+        <li class="menu-item {{ Route::is('admin.products') ? 'active' : '' }}">
+            <a href="{{route('admin.dashboard')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bxl-unsplash"></i>
+                <div data-i18n="Tables"> Hodimlar </div>
             </a>
         </li>
 
          <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">
-{{--            <a href="{{route('admin.clients')}}" class="menu-link ">--}}
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Tables">Xaridlar</div>
+            <a href="{{route('admin.dashboard')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-history"></i>
+                <div data-i18n="Tables"> Tarixlar </div>
             </a>
         </li>
 
         <li class="menu-item {{ Route::is('admin.messages') ? 'active' : '' }}">
-{{--            <a href="{{route('admin.messages')}}" class="menu-link ">--}}
-                <i class="menu-icon tf-icons bx bx-chat"></i>
-                <div data-i18n="Tables">Xabarlar</div>
+            <a href="{{route('admin.dashboard')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bxl-product-hunt"></i>
+                <div data-i18n="Tables"> Mahsulotlar </div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">
+            <a href="{{route('admin.dashboard')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Tables"> Kategoriyalar </div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">
+            <a href="{{route('admin.dashboard')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-unite"></i>
+                <div data-i18n="Tables"> Birliklar </div>
             </a>
         </li>
 
 
 
-
     </ul>
+
 </aside>

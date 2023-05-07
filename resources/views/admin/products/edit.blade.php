@@ -11,7 +11,7 @@
                 <hr>
                 <div class="card-body">
 
-                    <form action="{{route('admin.books.update',$book->id)}}" method="POST" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
+                    <form action="{{route('admin.products.update',$book->id)}}" method="POST" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

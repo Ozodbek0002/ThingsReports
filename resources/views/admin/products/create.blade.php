@@ -16,7 +16,7 @@
 
 
 
-                    <form action="{{route('admin.books.store')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                    <form action="{{route('admin.products.store')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group ">
