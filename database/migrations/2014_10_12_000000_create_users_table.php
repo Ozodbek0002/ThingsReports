@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->integer('type')->default('0');
             $table->string('position')->nullable();
+            $table->string('image')->nullable();
+            $table->string('phone')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

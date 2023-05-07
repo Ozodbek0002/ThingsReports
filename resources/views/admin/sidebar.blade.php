@@ -80,8 +80,8 @@
         </li>
 
         <!-- Main -->
-        <li class="menu-item {{ Route::is('admin.products') ? 'active' : '' }}">
-            <a href="{{route('admin.dashboard')}}" class="menu-link ">
+        <li class="menu-item {{ Route::is('admin.users') ? 'active' : '' }}">
+            <a href="{{route('admin.users')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bxl-unsplash"></i>
                 <div data-i18n="Tables"> Hodimlar </div>
             </a>
