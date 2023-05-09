@@ -59,27 +59,17 @@
                                 <td class="col-1">{{($products->currentpage()-1)*($products->perpage())+$ind+1}}</td>
                                 <td>{{ $product->name  }}</td>
                                 <td>
-                                    <img src="{{asset('books/'.$product->image)}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('products/'.$product->image)}}" alt="" width="100px" height="100px">
                                 </td>
                                 <td>{{ $product->category->name }}</td>
 
                                 <td     @if($product->count==0) style="color: red" @endif >{{ $product->count }}</td>
-                                <td>{{ $product->user()->name }}</td>
-                                <td>{{ $product->unit()->name }}</td>
+                                <td>{{ $product->user->name }}</td>
+                                <td>{{ $product->unit->name }}</td>
+                                <td>{{ $product->code }}</td>
                                 <td class="col-2">
 
-                                    <button data-bs-toggle="modal" data-bs-target="#showModal{{$product->id}}"
-                                            type="button" class="btn btn-success  btn-sm">
-                                            <span class="btn-label">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                    </button>
-                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$product->id}}"
-                                            type="button" class="btn btn-danger  btn-sm">
-                                            <span class="btn-label">
-                                                <i class="bx bx-trash"></i>
-                                            </span>
-                                    </button>
+
 
                                     <a class="btn btn-warning btn-sm"
                                        href="{{ route('admin.products.edit',$product->id) }}">
@@ -89,37 +79,13 @@
                                     </a>
 
 
-                                    {{-- Show  Modals--}}
-{{--                                    <div class="modal fade" id="showModal{{$product->id}}" tabindex="-1"--}}
-{{--                                         aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-{{--                                        <div class="modal-dialog">--}}
-{{--                                            <div class="modal-content">--}}
-{{--                                                <table class="table table-bordered text-center">--}}
-{{--                                                    <thead>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <th class="" scope="col">Muallifi</th>--}}
-{{--                                                        <th class="" scope="col"> Muqova</th>--}}
-{{--                                                        <th class="" scope="col"> Narxi</th>--}}
-{{--                                                        <th class="" scope="col"> Kunlik</th>--}}
-{{--                                                        <th class="" scope="col"> Beti</th>--}}
+                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$product->id}}"
+                                            type="button" class="btn btn-danger  btn-sm">
+                                            <span class="btn-label">
+                                                <i class="bx bx-trash"></i>
+                                            </span>
+                                    </button>
 
-{{--                                                    </tr>--}}
-{{--                                                    </thead>--}}
-{{--                                                    <tbody>--}}
-{{--                                                    <tr>--}}
-{{--                                                        <td>{{ $product->author }}</td>--}}
-{{--                                                        <td>{{ $product->cover->name }}</td>--}}
-{{--                                                        <td>{{ $product->price }}</td>--}}
-{{--                                                        <td>{{ $product->price_daily }}</td>--}}
-{{--                                                        <td>{{ $product->page }}</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                    </tbody>--}}
-{{--                                                </table>--}}
-
-{{--                                                --}}{{--                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
 
 
 

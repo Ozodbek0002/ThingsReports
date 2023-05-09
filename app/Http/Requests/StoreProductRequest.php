@@ -6,12 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +20,13 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'image' => 'required',
+            'code' => 'required|digits:10|unique:products,code',
+            'category_id' => 'required',
+            'unit_id' => 'required',
         ];
+
+
     }
 }

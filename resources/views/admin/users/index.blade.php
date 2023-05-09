@@ -43,9 +43,9 @@
                         <tr>
                             <th class="" scope="col">T/R</th>
                             <th class="" scope="col"> Ism Familiyasi </th>
+                            <th class="" scope="col"> Rasmi</th>
                             <th class="" scope="col"> Lavozimi </th>
                             <th class="" scope="col"> Telefon raqami</th>
-                            <th class="" scope="col"> Rasmi</th>
 
                         </tr>
                         </thead>
@@ -54,20 +54,31 @@
                         @foreach($users as $ind=>$user)
                             <tr>
 {{--                                <td class="col-1">{{($users->currentpage()-1)*($users->perpage())+$ind+1}}</td>--}}
+
                                 <td class="col-1">{{ $ind+1 }}</td>
 
                                 <td>{{ $user->name  }}</td>
 
-                                <td>{{ $user->position }}</td>
-
-                                <td>{{ $user->phone }}</td>
                                 <td>
                                     <img src="{{asset('users/'.$user->image)}}" alt="" width="100px" height="100px">
                                 </td>
 
+                                <td>{{ $user->position }}</td>
+
+                                <td>{{ $user->phone }}</td>
+
 
 
                                 <td class="col-2">
+
+                                    <a class="btn btn-warning btn-sm"
+                                       href="{{ route('admin.users.edit',$user->id) }}">
+                                            <span class="btn-label">
+                                                <i class="bx bx-pen"></i>
+                                            </span>
+                                    </a>
+
+
                                     <?php
                                         if ( 1 != $user->id){
                                             ?>
@@ -82,13 +93,6 @@
                                         }
                                         ?>
 
-
-                                    <a class="btn btn-warning btn-sm"
-                                       href="{{ route('admin.users.edit',$user->id) }}">
-                                            <span class="btn-label">
-                                                <i class="bx bx-pen"></i>
-                                            </span>
-                                    </a>
 
 
 

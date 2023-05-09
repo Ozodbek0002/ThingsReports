@@ -7,7 +7,7 @@
 
             <div class="card-header">
                 <div class="row">
-                    <div class="col-10"><h1 class="card-title">Yagi kitob </h1></div>
+                    <div class="col-10"><h1 class="card-title">Yagi mahsulot </h1></div>
                 </div>
 
                 <hr>
@@ -19,18 +19,19 @@
                     <form action="{{route('admin.products.store')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                         @csrf
 
+
                         <div class="form-group ">
-                            <label for=""> Kitob nomi</label>
-                            <input type="text" name="title" value="{{old('title')}}" class="form-control">
-                            @error('title')
+                            <label for=""> Mahsulot nomi </label>
+                            <input type="text" name="name" value="{{old('name')}}" class="form-control">
+                            @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group ">
-                            <label for="author">Muallif nomi</label>
-                            <input type="text" value="{{old('author')}}" id="author" class="form-control" name="author">
-                            @error('author')
+                            <label for="author">Soni</label>
+                            <input type="text" value="{{old('count')}}" id="author" class="form-control" name="count">
+                            @error('count')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -48,19 +49,19 @@
                         </div>
 
                          <div class="form-group ">
-                            <label for=""> Sirti </label>
-                            <select name="cover_id"  value="{{old('cover_id')}}" class="form-control">
-                                @foreach($cover as $c)
+                            <label for=""> Birligi </label>
+                            <select name="unit_id"  value="{{old('unit_id')}}" class="form-control">
+                                @foreach($units as $c)
                                 <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
-                            @error('cover_id')
+                            @error('unit_id')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group ">
-                            <label class="text text-primary" for="file"> Rasm yuklang</label>
+                            <label class="text text-primary" for="file"> Rasm yuklang </label>
                             <input type="file" value="{{old('image')}}" id="image" class="form-control" name="image">
                             @error('image')
                                 <span class="text-danger">{{ $message }}</span>
@@ -68,25 +69,9 @@
                         </div>
 
                         <div class="form-group ">
-                            <label for="author">Narxi</label>
-                            <input type="number" value="{{old('price')}}"  class="form-control" name="price">
-                            @error('price')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group ">
-                            <label for="author">Kunlik narxi</label>
-                            <input type="number" value="{{old('price_daily')}}"class="form-control" name="price_daily">
-                            @error('price_daily')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group ">
-                            <label for="author">Sahifasi</label>
-                            <input type="number" value="{{old('page')}}"  class="form-control" name="page">
-                            @error('page')
+                            <label for="author">Interval no`mer</label>
+                            <input type="number" value="{{old('code')}}"  class="form-control" name="code">
+                            @error('code')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -99,7 +84,7 @@
                             @enderror
                         </div>
 
-
+                        <br>
 
                         <button type="submit" id="alert" class="btn btn-primary " onclick="end()">Saqlash</button>
                         <input type="reset" class="btn btn-danger" value="Tozalash">
