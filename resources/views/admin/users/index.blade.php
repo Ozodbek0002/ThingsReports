@@ -42,9 +42,10 @@
                         <thead>
                         <tr>
                             <th class="" scope="col">T/R</th>
-                            <th class="" scope="col"> Ismi</th>
-                            <th class="" scope="col"> Lavozimi</th>
-                            <th class="" scope="col"> Emaili</th>
+                            <th class="" scope="col"> Ism Familiyasi </th>
+                            <th class="" scope="col"> Lavozimi </th>
+                            <th class="" scope="col"> Telefon raqami</th>
+                            <th class="" scope="col"> Rasmi</th>
 
                         </tr>
                         </thead>
@@ -54,13 +55,17 @@
                             <tr>
 {{--                                <td class="col-1">{{($users->currentpage()-1)*($users->perpage())+$ind+1}}</td>--}}
                                 <td class="col-1">{{ $ind+1 }}</td>
+
                                 <td>{{ $user->name  }}</td>
-{{--                                <td>--}}
-{{--                                    <img src="{{asset('books/'.$user->image)}}" alt="" width="100px" height="100px">--}}
-{{--                                </td>--}}
+
                                 <td>{{ $user->position }}</td>
 
-                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td>
+                                    <img src="{{asset('users/'.$user->image)}}" alt="" width="100px" height="100px">
+                                </td>
+
+
 
                                 <td class="col-2">
                                     <?php

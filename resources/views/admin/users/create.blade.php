@@ -36,7 +36,7 @@
 
 
                         <div class="form-group ">
-                            <label class="text text-primary" for="file"> Rasm yuklang</label>
+                            <label class="text text-primary" for="file"> Rasm yuklang </label>
                             <input type="file" value="{{old('image')}}" id="image" class="form-control" name="image">
                             @error('image')
                                 <span class="text-danger">{{ $message }}</span>
@@ -46,7 +46,7 @@
 
                         <div class="form-group ">
                             <label for="author">Telefon raqami</label>
-                            <input type="image" value="{{old('phone')}}"  class="form-control" name="phone">
+                            <input type="number" value="{{old('phone')}}"  class="form-control" name="phone">
                             @error('phone')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -54,7 +54,7 @@
 
                         <div class="form-group ">
                             <label for="author">Emaili</label>
-                            <input type="number" value="{{old('email')}}"class="form-control" name="email">
+                            <input type="email" value="{{old('email')}}"class="form-control" name="email">
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -62,12 +62,13 @@
 
                         <div class="form-group ">
                             <label for="author">Paroli</label>
-                            <input type="number" value="{{old('password')}}"  class="form-control" name="password">
+                            <input type="password" value="{{old('password')}}"  class="form-control" name="password">
                             @error('password')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
+                        <br>
 
 
                         <button type="submit" id="alert" class="btn btn-primary " >Saqlash</button>
