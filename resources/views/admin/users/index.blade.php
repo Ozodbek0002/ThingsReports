@@ -63,19 +63,20 @@
                                 <td>{{ $user->email }}</td>
 
                                 <td class="col-2">
+                                    <?php
+                                        if ( 1 != $user->id){
+                                            ?>
+                                        <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$user->id}}"
+                                                type="button" class="btn btn-danger  btn-sm">
+                                                <span class="btn-label">
+                                                    <i class="bx bx-trash"></i>
+                                                </span>
+                                        </button>
 
-                                    <button data-bs-toggle="modal" data-bs-target="#showModal{{$user->id}}"
-                                            type="button" class="btn btn-success  btn-sm">
-                                            <span class="btn-label">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                    </button>
-                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$user->id}}"
-                                            type="button" class="btn btn-danger  btn-sm">
-                                            <span class="btn-label">
-                                                <i class="bx bx-trash"></i>
-                                            </span>
-                                    </button>
+                                    <?php
+                                        }
+                                        ?>
+
 
                                     <a class="btn btn-warning btn-sm"
                                        href="{{ route('admin.users.edit',$user->id) }}">
@@ -85,34 +86,6 @@
                                     </a>
 
 
-                                    {{-- Show  Modals--}}
-                                    <div class="modal fade" id="showModal{{$user->id}}" tabindex="-1"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <table class="table table-bordered text-center">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="" scope="col">Muallifi</th>
-                                                        <th class="" scope="col"> Muqova</th>
-                                                        <th class="" scope="col"> Narxi</th>
-                                                        <th class="" scope="col"> Kunlik</th>
-                                                        <th class="" scope="col"> Beti</th>
-
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>{{ $user->name }}</td>
-
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-
-                                                {{--                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>--}}
-                                            </div>
-                                        </div>
-                                    </div>
 
 
                                     {{-- Delete  Modals--}}
@@ -122,7 +95,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-3" id="exampleModalLabel">Haqiqatdan ham
-                                                        ushbu xaridni
+                                                        ushbu Hodimni
                                                         o'chirib tashlamoqchimisiz ?</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
