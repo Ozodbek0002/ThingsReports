@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('name');
             $table->bigInteger('code');
             $table->string('image')->nullable();
-            $table->integer('count');
+            $table->integer('count')->default(1);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');

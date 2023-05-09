@@ -12,23 +12,24 @@
 
                     <div class="col-md-6">
 
-                        <form action="{{route('admin.search')}}" method="post">
-                            @csrf
-                            <div class="input-group">
-                                <input type="text" name="search" class="form-control" placeholder="Qidirish...">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </form>
+{{--                        <form action="{{route('admin.search')}}" method="post">--}}
+{{--                            @csrf--}}
+{{--                            <div class="input-group">--}}
+{{--                                <input type="text" name="search" class="form-control" placeholder="Qidirish...">--}}
+{{--                                <button class="btn btn-primary" type="submit">--}}
+{{--                                    <i class="fa fa-search"></i>--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+
                     </div>
 
                     <div class="col-md-3">
-                        <a class="btn btn-primary" href="{{route('admin.books.create')}}">
+                        <a class="btn btn-primary" href="{{route('admin.products.create')}}">
                             <span class="btn-label">
                                 <i class="fa fa-plus"></i>
                             </span>
-                            Kitob qo'shish
+                            Mahsulot qo'shish
                         </a>
                     </div>
 
@@ -53,27 +54,27 @@
                         </thead>
                         <tbody>
 
-                        @foreach($books as $ind=>$book)
+                        @foreach($products as $ind=>$product)
                             <tr>
-                                <td class="col-1">{{($books->currentpage()-1)*($books->perpage())+$ind+1}}</td>
-                                <td>{{ $book->title  }}</td>
+                                <td class="col-1">{{($products->currentpage()-1)*($products->perpage())+$ind+1}}</td>
+                                <td>{{ $product->name  }}</td>
                                 <td>
-                                    <img src="{{asset('books/'.$book->image)}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('books/'.$product->image)}}" alt="" width="100px" height="100px">
                                 </td>
-                                <td>{{ $book->category->name }}</td>
+                                <td>{{ $product->category->name }}</td>
 
-                                <td     @if($book->count==0) style="color: red" @endif >{{ $book->count }}</td>
-                                <td>{{ $book->sell_count() }}</td>
-                                <td>{{ $book->rent_count() }}</td>
+                                <td     @if($product->count==0) style="color: red" @endif >{{ $product->count }}</td>
+                                <td>{{ $product->user()->name }}</td>
+                                <td>{{ $product->unit()->name }}</td>
                                 <td class="col-2">
 
-                                    <button data-bs-toggle="modal" data-bs-target="#showModal{{$book->id}}"
+                                    <button data-bs-toggle="modal" data-bs-target="#showModal{{$product->id}}"
                                             type="button" class="btn btn-success  btn-sm">
                                             <span class="btn-label">
                                                 <i class="fa fa-eye"></i>
                                             </span>
                                     </button>
-                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$book->id}}"
+                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$product->id}}"
                                             type="button" class="btn btn-danger  btn-sm">
                                             <span class="btn-label">
                                                 <i class="bx bx-trash"></i>
@@ -81,7 +82,7 @@
                                     </button>
 
                                     <a class="btn btn-warning btn-sm"
-                                       href="{{ route('admin.books.edit',$book->id) }}">
+                                       href="{{ route('admin.products.edit',$product->id) }}">
                                             <span class="btn-label">
                                                 <i class="bx bx-pen"></i>
                                             </span>
@@ -89,52 +90,53 @@
 
 
                                     {{-- Show  Modals--}}
-                                    <div class="modal fade" id="showModal{{$book->id}}" tabindex="-1"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <table class="table table-bordered text-center">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="" scope="col">Muallifi</th>
-                                                        <th class="" scope="col"> Muqova</th>
-                                                        <th class="" scope="col"> Narxi</th>
-                                                        <th class="" scope="col"> Kunlik</th>
-                                                        <th class="" scope="col"> Beti</th>
+{{--                                    <div class="modal fade" id="showModal{{$product->id}}" tabindex="-1"--}}
+{{--                                         aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+{{--                                        <div class="modal-dialog">--}}
+{{--                                            <div class="modal-content">--}}
+{{--                                                <table class="table table-bordered text-center">--}}
+{{--                                                    <thead>--}}
+{{--                                                    <tr>--}}
+{{--                                                        <th class="" scope="col">Muallifi</th>--}}
+{{--                                                        <th class="" scope="col"> Muqova</th>--}}
+{{--                                                        <th class="" scope="col"> Narxi</th>--}}
+{{--                                                        <th class="" scope="col"> Kunlik</th>--}}
+{{--                                                        <th class="" scope="col"> Beti</th>--}}
 
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>{{ $book->author }}</td>
-                                                        <td>{{ $book->cover->name }}</td>
-                                                        <td>{{ $book->price }}</td>
-                                                        <td>{{ $book->price_daily }}</td>
-                                                        <td>{{ $book->page }}</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+{{--                                                    </tr>--}}
+{{--                                                    </thead>--}}
+{{--                                                    <tbody>--}}
+{{--                                                    <tr>--}}
+{{--                                                        <td>{{ $product->author }}</td>--}}
+{{--                                                        <td>{{ $product->cover->name }}</td>--}}
+{{--                                                        <td>{{ $product->price }}</td>--}}
+{{--                                                        <td>{{ $product->price_daily }}</td>--}}
+{{--                                                        <td>{{ $product->page }}</td>--}}
+{{--                                                    </tr>--}}
+{{--                                                    </tbody>--}}
+{{--                                                </table>--}}
 
-                                                {{--                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>--}}
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                                --}}{{--                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
 
 
                                     {{-- Delete  Modals--}}
-                                    <div class="modal fade" id="deleteModal{{$book->id}}" tabindex="-1"
+                                    <div class="modal fade" id="deleteModal{{$product->id}}" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-3" id="exampleModalLabel">Haqiqatdan ham
-                                                        ushbu xaridni
+                                                        ushbu mahsulotni
                                                         o'chirib tashlamoqchimisiz ?</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
 
-                                                <form action="{{route('admin.books.destroy',$book->id)}}" method="post">
+                                                <form action="{{route('admin.products.destroy',$product->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
 
@@ -162,9 +164,9 @@
                     <div class="container">
                         <div class="row justify-content-center">
 
-                            @if ($books->links())
+                            @if ($products->links())
                                 <div class="mt-4 p-4 box has-text-centered">
-                                    {{ $books->links() }}
+                                    {{ $products->links() }}
                                 </div>
                             @endif
 

@@ -87,17 +87,19 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.messages') ? 'active' : '' }}">
+            <a href="{{route('admin.products')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bxl-product-hunt"></i>
+                <div data-i18n="Tables"> Mahsulotlar </div>
+            </a>
+        </li>
+
+
+
          <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">
             <a href="{{route('admin.dashboard')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bx-history"></i>
                 <div data-i18n="Tables"> Tarixlar </div>
-            </a>
-        </li>
-
-        <li class="menu-item {{ Route::is('admin.messages') ? 'active' : '' }}">
-            <a href="{{route('admin.dashboard')}}" class="menu-link ">
-                <i class="menu-icon tf-icons bx bxl-product-hunt"></i>
-                <div data-i18n="Tables"> Mahsulotlar </div>
             </a>
         </li>
 
@@ -107,6 +109,10 @@
                 <div data-i18n="Tables"> Kategoriyalar </div>
             </a>
         </li>
+
+
+
+
 
         <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">
             <a href="{{route('admin.dashboard')}}" class="menu-link ">
