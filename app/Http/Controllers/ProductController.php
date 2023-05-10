@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Unit;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -25,23 +26,24 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $units = Unit::all();
+        $users = User::all();
         return view('admin.products.create', [
             'categories'=>$categories,
             'units'=>$units,
+            'users'=>$users,
         ]);
     }
 
 
     public function store(StoreProductRequest $request)
     {
-
         $product = new Product();
         $product->name = $request->name;
         $product->code = $request->code;
         $product->category_id = $request->category_id;
         $product->unit_id = $request->unit_id;
         $product->count = $request->count;
-        $product->user_id = 1;
+        $product->user_id = $request->user_id;
 
         $imagename = $request->file('image')->getClientOriginalName();
         $request->image->move('products', $imagename);
@@ -62,10 +64,12 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $units = Unit::all();
+        $users = User::all();
         return view('admin.products.edit', [
             'product'=>$product,
             'categories'=>$categories,
             'units'=>$units,
+            'users'=>$users,
         ]);
     }
 
@@ -77,7 +81,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->unit_id = $request->unit_id;
         $product->count = $request->count;
-        $product->user_id = 1;
+        $product->user_id = $request->user_id;
 
         if ($request->image != null) {
 

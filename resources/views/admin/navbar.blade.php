@@ -11,20 +11,20 @@
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
         <!-- Search -->
-        <div class="navbar-nav align-items-center">
-            <div class="nav-item d-flex align-items-center">
-                <form action="">
-                    <div class="input-group input-group-merge search-bar">
-                        <span class="input-group-text" id="topbar-addon">
-                            <i class="bx bx-search"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Kitob qidirish..." aria-label="Search..."
-                               aria-describedby="topbar-addon"/>
-                        <button type="submit" class="btn btn-primary">Qidirish</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+{{--        <div class="navbar-nav align-items-center">--}}
+{{--            <div class="nav-item d-flex align-items-center">--}}
+{{--                <form action="">--}}
+{{--                    <div class="input-group input-group-merge search-bar">--}}
+{{--                        <span class="input-group-text" id="topbar-addon">--}}
+{{--                            <i class="bx bx-search"></i>--}}
+{{--                        </span>--}}
+{{--                        <input type="text" class="form-control" placeholder="Kitob qidirish..." aria-label="Search..."--}}
+{{--                               aria-describedby="topbar-addon"/>--}}
+{{--                        <button type="submit" class="btn btn-primary">Qidirish</button>--}}
+{{--                    </div>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">

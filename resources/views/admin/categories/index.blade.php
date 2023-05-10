@@ -23,14 +23,24 @@
                         </form>
                     </div>
 
-                    <div class="col-md-3">
-                        <a class="btn btn-primary" href="{{route('admin.users.create')}}">
-                            <span class="btn-label">
-                                <i class="fa fa-plus"></i>
-                            </span>
-                            Hodim qo'shish
-                        </a>
-                    </div>
+{{--                    <div class="col-md-3">--}}
+{{--                        <a class="btn btn-primary" href="{{route('admin.categories.create')}}">--}}
+{{--                            <span class="btn-label">--}}
+{{--                                <i class="fa fa-plus"></i>--}}
+{{--                            </span>--}}
+{{--                            Hodim qo'shish--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+
+
+                    <button data-bs-toggle="modal" data-bs-target="#addModal"
+                            type="button" class="btn btn-success  btn-sm">
+                                <span class="btn-label">
+                                    <i class="bx bx-add-to-queue"></i>
+                                </span>
+                    </button>
+
+
 
                 </div>
 
@@ -42,73 +52,52 @@
                         <thead>
                         <tr>
                             <th class="" scope="col">T/R</th>
-                            <th class="" scope="col"> Ism Familiyasi</th>
-                            <th class="" scope="col"> Rasmi</th>
-                            <th class="" scope="col"> Lavozimi</th>
-                            <th class="" scope="col"> Telefon raqami</th>
+                            <th class="" scope="col"> Nomi</th>
 
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($users as $ind=>$user)
+                        @foreach($categories as $ind=>$category)
                             <tr>
-                                {{--                                <td class="col-1">{{($users->currentpage()-1)*($users->perpage())+$ind+1}}</td>--}}
 
                                 <td class="col-1">{{ $ind+1 }}</td>
 
-                                <td>{{ $user->name  }}</td>
+                                <td>{{ $category->name  }}</td>
 
-                                <td>
-                                    <img src="{{asset('users/'.$user->image)}}" alt="" width="100px" height="100px">
-                                </td>
-
-                                <td>{{ $user->position }}</td>
-
-                                <td>{{ $user->phone }}</td>
 
                                 <td class="col-2">
 
                                     <a class="btn btn-warning btn-sm"
-                                       href="{{ route('admin.users.edit',$user->id) }}">
+                                       href="{{ route('admin.categories.edit',$category->id) }}">
                                             <span class="btn-label">
                                                 <i class="bx bx-pen"></i>
                                             </span>
                                     </a>
 
 
-                                        <?php
-                                    if (1 != $user->id){
-                                        ?>
-                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$user->id}}"
+                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$category->id}}"
                                             type="button" class="btn btn-danger  btn-sm">
                                                 <span class="btn-label">
                                                     <i class="bx bx-trash"></i>
                                                 </span>
                                     </button>
 
-                                        <?php
-                                    }
-                                        ?>
-
-
-
-
 
                                     {{-- Delete  Modals--}}
-                                    <div class="modal fade" id="deleteModal{{$user->id}}" tabindex="-1"
+                                    <div class="modal fade" id="deleteModal{{$category->id}}" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-3" id="exampleModalLabel">Haqiqatdan ham
-                                                        ushbu Hodimni
+                                                        ushbu Kategoriyani
                                                         o'chirib tashlamoqchimisiz ?</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
 
-                                                <form action="{{route('admin.users.destroy',$user->id)}}" method="post">
+                                                <form action="{{route('admin.categories.destroy',$category->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
 
@@ -125,25 +114,54 @@
                                     </div>
 
 
+
+
                                 </td>
+
+
+
                             </tr>
                         @endforeach
 
                         </tbody>
 
+                        <div class="modal fade" id="addModal" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-3" id="exampleModalLabel">Haqiqatdan ham
+                                            ushbu Kategoriyani
+                                            o'chirib tashlamoqchimisiz ?</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <form action="{{route('admin.categories.store')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <div class="form-group ">
+                                            <label for=""> Hodim nomi </label>
+                                            <input type="text" name="name" value="{{old('name')}}" class="form-control">
+                                            @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <br>
+
+                                        <button type="submit" id="alert" class="btn btn-primary " >Saqlash</button>
+                                        <input type="reset" class="btn btn-danger" value="Tozalash">
+
+                                    </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+
                     </table>
 
-                    {{--                    <div class="container">--}}
-                    {{--                        <div class="row justify-content-center">--}}
-
-                    {{--                            @if ($users->links())--}}
-                    {{--                                <div class="mt-4 p-4 box has-text-centered">--}}
-                    {{--                                    {{ $users->links() }}--}}
-                    {{--                                </div>--}}
-                    {{--                            @endif--}}
-
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
 
 
                 </div>
@@ -153,4 +171,5 @@
     </div>
 
 @endsection
+
 

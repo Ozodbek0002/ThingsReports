@@ -28,6 +28,21 @@
 
                         <div class="form-group">
                             <label for=""> Kategoriyasi </label>
+                            <select  name="user_id" id="like_to" class="form-control">
+                                <option value="{{$product->user_id}}" style="color: blue">
+                                    {{ $product->user->name }}
+                                </option>
+                                @foreach($users as $c)
+                                    @if($product->user->name != $c->name)
+                                        <option value="{{$c->id}}">{{$c->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                          <div class="form-group">
+                            <label for=""> Kategoriyasi </label>
                             <select  name="category_id" id="like_to" class="form-control">
                                 <option value="{{$product->category_id}}" style="color: blue">
                                     {{ $product->category->name }}
@@ -39,6 +54,9 @@
                                 @endforeach
                             </select>
                         </div>
+
+
+
 
 
                         <div class="form-group">
@@ -70,6 +88,7 @@
                             <input type="number" name="count" value="{{$product->count}}" class="form-control " id="author">
                         </div>
 
+                        <br>
 
                         <button type="submit" id="alert" class="btn btn-primary "> Saqlash </button>
                         <input type="reset" class="btn btn-danger" value="Tozalash">

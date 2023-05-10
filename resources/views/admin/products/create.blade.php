@@ -37,6 +37,19 @@
                         </div>
 
                         <div class="form-group ">
+                            <label for=""> Masul inson  </label>
+                            <select name="user_id"  value="{{old('user_id')}}" class="form-control">
+                                @foreach($users as $c)
+                                <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('user_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+
+                         <div class="form-group ">
                             <label for=""> Kategoriyasi </label>
                             <select name="category_id"  value="{{old('category_id')}}" class="form-control">
                                 @foreach($categories as $c)
@@ -47,6 +60,8 @@
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+
+
 
                          <div class="form-group ">
                             <label for=""> Birligi </label>
@@ -59,6 +74,7 @@
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+
 
                         <div class="form-group ">
                             <label class="text text-primary" for="file"> Rasm yuklang </label>

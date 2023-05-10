@@ -12,15 +12,15 @@
 
                     <div class="col-md-6">
 
-{{--                        <form action="{{route('admin.search')}}" method="post">--}}
-{{--                            @csrf--}}
-{{--                            <div class="input-group">--}}
-{{--                                <input type="text" name="search" class="form-control" placeholder="Qidirish...">--}}
-{{--                                <button class="btn btn-primary" type="submit">--}}
-{{--                                    <i class="fa fa-search"></i>--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
+                        {{--                        <form action="{{route('admin.search')}}" method="post">--}}
+                        {{--                            @csrf--}}
+                        {{--                            <div class="input-group">--}}
+                        {{--                                <input type="text" name="search" class="form-control" placeholder="Qidirish...">--}}
+                        {{--                                <button class="btn btn-primary" type="submit">--}}
+                        {{--                                    <i class="fa fa-search"></i>--}}
+                        {{--                                </button>--}}
+                        {{--                            </div>--}}
+                        {{--                        </form>--}}
 
                     </div>
 
@@ -45,10 +45,12 @@
                             <th class="" scope="col">T/R</th>
                             <th class="" scope="col"> Nomi</th>
                             <th class="" scope="col"> Rasmi</th>
+                            <th class="" scope="col"> Masul hodim</th>
                             <th class="" scope="col"> Kategoriya</th>
                             <th class="" scope="col"> Soni</th>
-                            <th class="" scope="col"> Sotildi</th>
-                            <th class="" scope="col"> Ijarada</th>
+                            <th class="" scope="col"> Birligi</th>
+                            <th class="" scope="col"> Interval raqami</th>
+                            <th class="" scope="col"> Qo'shilgan vaqt</th>
                             <th class="" scope="col">Amallar</th>
                         </tr>
                         </thead>
@@ -57,19 +59,27 @@
                         @foreach($products as $ind=>$product)
                             <tr>
                                 <td class="col-1">{{($products->currentpage()-1)*($products->perpage())+$ind+1}}</td>
+
                                 <td>{{ $product->name  }}</td>
+
                                 <td>
-                                    <img src="{{asset('products/'.$product->image)}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('products/'.$product->image)}}" alt="" width="100px"
+                                         height="100px">
                                 </td>
+
+                                <td>{{ $product->user->name }}</td>
+
                                 <td>{{ $product->category->name }}</td>
 
-                                <td     @if($product->count==0) style="color: red" @endif >{{ $product->count }}</td>
-                                <td>{{ $product->user->name }}</td>
+                                <td @if($product->count==0) style="color: red" @endif >{{ $product->count }}</td>
+
                                 <td>{{ $product->unit->name }}</td>
+
                                 <td>{{ $product->code }}</td>
+
+                                <td>{{ $product->created_at }}</td>
+
                                 <td class="col-2">
-
-
 
                                     <a class="btn btn-warning btn-sm"
                                        href="{{ route('admin.products.edit',$product->id) }}">
@@ -87,8 +97,6 @@
                                     </button>
 
 
-
-
                                     {{-- Delete  Modals--}}
                                     <div class="modal fade" id="deleteModal{{$product->id}}" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,7 +110,8 @@
                                                             aria-label="Close"></button>
                                                 </div>
 
-                                                <form action="{{route('admin.products.destroy',$product->id)}}" method="post">
+                                                <form action="{{route('admin.products.destroy',$product->id)}}"
+                                                      method="post">
                                                     @csrf
                                                     @method('DELETE')
 
