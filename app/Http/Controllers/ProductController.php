@@ -103,6 +103,14 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        //
+        $image_path = public_path("products/{$product->image}");
+
+        if (Product::exists($image_path)) {
+            File::delete($image_path);
+        }
+
+        $product->delete();
+        return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli o`chirildi.');
+
     }
 }

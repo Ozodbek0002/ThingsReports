@@ -5,62 +5,72 @@ namespace App\Http\Controllers;
 use App\Models\History;
 use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
+use App\Models\Product;
+use App\Models\User;
+
 
 class HistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $histories = History::paginate(5);
+        return view('admin.transactions.index', [
+            'histories' => $histories,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        $users = User::all();
+        $products = Product::all();
+        return view('admin.transactions.create', [
+            'users' => $users,
+            'products' => $products,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreHistoryRequest $request)
     {
-        //
+        if ($request->from_user_id == $request->to_user_id) {
+            return redirect()->route('admin.transactions')->withErrors( 'Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
+        } else {
+            History::create($request->all());
+            return redirect()->route('admin.transactions')->with('msg', 'O`tkazma muvaffaqiyatli amalga oshirildi.');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(History $history)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(History $history)
     {
-        //
+        $users = User::all();
+        $products = Product::all();
+        return view('admin.transactions.edit', [
+            'history' => $history,
+            'users' => $users,
+            'products' => $products,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateHistoryRequest $request, History $history)
     {
-        //
+        $history->update($request->all());
+        return redirect()->route('admin.transactions');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(History $history)
     {
-        //
+        $history->delete();
+        return redirect()->route('admin.transactions')->with('msg', ' Aperatsiya muvaffaqiyatli o`chirildi.');
     }
 }

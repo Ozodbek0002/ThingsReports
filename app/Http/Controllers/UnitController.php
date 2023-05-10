@@ -8,59 +8,55 @@ use App\Http\Requests\UpdateUnitRequest;
 
 class UnitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $units = Unit::all();
+        return view('admin.units.index',[
+            'units'=>$units,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreUnitRequest $request)
     {
-        //
+        $unit = new Unit();
+        $unit->name = $request->name;
+        $unit->save();
+
+        return redirect()->route('admin.units')->with('msg', 'O`lchov birligi muvaffaqiyatli qo`shildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Unit $unit)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Unit $unit)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateUnitRequest $request, Unit $unit)
     {
-        //
+        $unit->name = $request->name;
+        $unit->save();
+
+        return redirect()->route('admin.units')->with('msg', 'O`lchov birligi muvaffaqiyatli tahrirlandi.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Unit $unit)
     {
-        //
+        $unit->delete();
+        return redirect()->route('admin.units')->with('msg', 'O`lchov birligi muvaffaqiyatli o`chirildi.');
     }
 }

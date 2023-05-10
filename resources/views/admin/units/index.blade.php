@@ -8,7 +8,7 @@
 
                 <div class="row ">
 
-                    <div class="col-md-3"><h1 class="card-title"> Kategoriyalar </h1></div>
+                    <div class="col-md-3"><h1 class="card-title"> Birliklar </h1></div>
 
                     <div class="col-md-6">
 
@@ -31,7 +31,7 @@
                                     <i class="bx bx-add-to-queue"></i>
                                 </span>
                             </button>
-                            Kategoriya qo'shish
+                            Birlik qo'shish
                         </a>
                     </div>
 
@@ -58,25 +58,18 @@
                         </thead>
                         <tbody>
 
-                        @foreach($categories as $ind=>$category)
+                        @foreach($units as $ind=>$unit)
                             <tr>
 
                                 <td class="col-1">{{ $ind+1 }}</td>
 
-                                <td>{{ $category->name  }}</td>
+                                <td>{{ $unit->name  }}</td>
 
 
                                 <td class="col-2">
 
-                                    {{--                                    <a class="btn btn-warning btn-sm"--}}
-                                    {{--                                       href="{{ route('admin.categories.edit',$category->id) }}">--}}
-                                    {{--                                            <span class="btn-label">--}}
-                                    {{--                                                <i class="bx bx-pen"></i>--}}
-                                    {{--                                            </span>--}}
-                                    {{--                                    </a>--}}
 
-
-                                    <button data-bs-toggle="modal" data-bs-target="#editModal{{$category->id}}"
+                                    <button data-bs-toggle="modal" data-bs-target="#editModal{{$unit->id}}"
                                             type="button" class="btn btn-warning  btn-sm">
                                                 <span class="btn-label">
                                                     <i class="bx bx-pen"></i>
@@ -84,7 +77,7 @@
                                     </button>
 
 
-                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$category->id}}"
+                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$unit->id}}"
                                             type="button" class="btn btn-danger  btn-sm">
                                                 <span class="btn-label">
                                                     <i class="bx bx-trash"></i>
@@ -93,20 +86,19 @@
 
 
                                     {{-- Delete  Modals--}}
-                                    <div class="modal fade" id="deleteModal{{$category->id}}" tabindex="-1"
+                                    <div class="modal fade" id="deleteModal{{$unit->id}}" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-3" id="exampleModalLabel">Haqiqatdan ham
-                                                        ushbu Kategoriyani
+                                                        ushbu Birlikni
                                                         o'chirib tashlamoqchimisiz ?</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
 
-                                                <form action="{{route('admin.categories.destroy',$category->id)}}"
-                                                      method="post">
+                                                <form action="{{route('admin.units.destroy',$unit->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
 
@@ -124,7 +116,7 @@
 
 
                                     {{--                                    Edit Modals--}}
-                                    <div class="modal fade" id="editModal{{$category->id}}" tabindex="-1"
+                                    <div class="modal fade" id="editModal{{$unit->id}}" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -135,17 +127,16 @@
                                                             aria-label="Close"></button>
                                                 </div>
 
-                                                <form action="{{route('admin.categories.update',$category->id)}}"
-                                                      method="POST" accept-charset="UTF-8" method="post"
+                                                <form action="{{route('admin.units.update',$unit->id)}}" method="POST"
+                                                      accept-charset="UTF-8" method="post"
                                                       enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')
 
                                                     <div class="form-group">
-                                                        <label for="title"> Kategoriya nomi </label>
+                                                        <label for="title"> Birlik nomi </label>
                                                         <input type="text" id="title" name="name"
-                                                               value="{{$category->name}}" class="form-control"
-                                                               required>
+                                                               value="{{$unit->name}}" class="form-control" required>
                                                     </div>
 
 
@@ -171,23 +162,24 @@
 
                         </tbody>
 
+                        {{--                        Create Modal--}}
                         <div class="modal fade" id="addModal" tabindex="-1"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content container">
 
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-3" id="exampleModalLabel"> Yangi Kategoriya </h1>
+                                        <h1 class="modal-title fs-3" id="exampleModalLabel"> Yangi Birlik </h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                     </div>
 
-                                    <form action="{{route('admin.categories.store')}}" method="POST"
-                                          accept-charset="UTF-8" enctype="multipart/form-data">
+                                    <form action="{{route('admin.units.store')}}" method="POST" accept-charset="UTF-8"
+                                          enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group ">
-                                            <label for=""> Kategoriya nomi </label>
+                                            <label for=""> Birlik nomi </label>
                                             <input type="text" name="name" value="{{old('name')}}" class="form-control">
                                             @error('name')
                                             <span class="text-danger">{{ $message }}</span>

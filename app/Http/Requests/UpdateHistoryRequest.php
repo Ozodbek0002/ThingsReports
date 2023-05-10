@@ -6,12 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateHistoryRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +20,10 @@ class UpdateHistoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'product_id' => 'required',
+            'from_user_id' => 'required',
+            'to_user_id' => 'required',
         ];
     }
 }

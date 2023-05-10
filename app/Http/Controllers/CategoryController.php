@@ -30,38 +30,38 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('admin.categories')->with('msg', 'Kategoriya muvaffaqiyatli qo`shildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Category $category)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Category $category)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('admin.categories')->with('msg', 'Kategoriya muvaffaqiyatli tahrirlandi.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories')->with('msg', 'Kategoriya muvaffaqiyatli o`chirildi.');
     }
 }

@@ -103,12 +103,12 @@
         </li>
 
 
-         <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">
-            <a href="{{route('admin.dashboard')}}" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-history"></i>
-                <div data-i18n="Tables"> Tarixlar </div>
-            </a>
-        </li>
+{{--         <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">--}}
+{{--            <a href="{{route('admin.dashboard')}}" class="menu-link ">--}}
+{{--                <i class="menu-icon tf-icons bx bx-history"></i>--}}
+{{--                <div data-i18n="Tables"> Tarixlar </div>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 
 
         <li class="menu-item {{ Route::is('admin.categories') ? 'active' : '' }}">
