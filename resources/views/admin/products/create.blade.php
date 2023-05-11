@@ -36,6 +36,7 @@
                             @enderror
                         </div>
 
+{{--                        User--}}
                         <div class="form-group ">
                             <label for=""> Masul inson  </label>
                             <select name="user_id"  value="{{old('user_id')}}" class="form-control">

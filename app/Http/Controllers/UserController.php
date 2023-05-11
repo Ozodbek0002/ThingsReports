@@ -6,6 +6,8 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
+use App\Models\Department;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -21,7 +23,12 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        $departments = Department::all();
+        return view('admin.users.create',[
+            'roles'=>$roles,
+            'departments'=>$departments,
+        ]);
     }
 
 
@@ -32,26 +39,27 @@ class UserController extends Controller
         $user = $request->validate([
             'name'=>'required',
             'image'=>'required',
+            'role_id'=>'required',
+            'department_id'=>'required',
             'email'=>'required|email|unique:users,email',
             'password'=>['required',  'min:8', ],
-            'position'=>'required',
-            'phone'=>'required|digits:10',
+            'phone'=>'required|digits:9',
         ],[
             'name.required'=>'Iltimos hodim ism familiyasini yozing .',
             'image.required'=>'Iltimos rasm yuklang.',
+            'role_id.required'=>'Iltimos hodim lavozimini tanlang.',
+            'department_id.required'=>'Iltimos hodim bo`limini tanlang.',
             'email.required'=>'Iltimos emailni toliq yozing.',
             'email.unique:users'=>'Bu email allaqachon ro`yhatdan o`tgan ',
             'password.required'=>'Iltimos parolni  yozing.',
-            'password.min:6'=>'Parol 6 ta belgidan kam bo`masligi kerak.',
-            'position.required'=>'Iltimos hodim lavozimini yozing.',
             'phone.required'=>'Iltimos hodim telefon raqamini yozing.',
-            'phone.digits:9'=>'Telefon raqam faqat raqamlardan iborat bo`lishi kerak.',
         ]);
 
         $data->name = $user['name'];
+        $data->role_id = $user['role_id'];
+        $data->department_id = $user['department_id'];
         $data->email = $user['email'];
         $data->password = $user['password'];
-        $data->position = $user['position'];
         $data->phone = $user['phone'];
 
         $imagename = $request->file('image')->getClientOriginalName();
@@ -84,7 +92,8 @@ class UserController extends Controller
             'name'=>'required',
             'email'=>'required|email',
             'password'=>['required',  'min:8', ],
-            'position'=>'required',
+            'role_id'=>'required',
+            'department_id'=>'required',
             'phone'=>'required|digits:9',
         ],[
             'name.required'=>'Iltimos hodim ism familiyasini yozing .',
@@ -92,15 +101,17 @@ class UserController extends Controller
             'email.unique:users'=>'Bu email allaqachon ro`yhatdan o`tgan ',
             'password.required'=>'Iltimos parolni  yozing.',
             'password.min:6'=>'Parol 6 ta belgidan kam bo`masligi kerak.',
-            'position.required'=>'Iltimos hodim lavozimini yozing.',
             'phone.required'=>'Iltimos hodim telefon raqamini yozing.',
-            'phone.digits:10'=>'Telefon raqam faqat raqamlardan iborat bo`lishi kerak.',
+            'role_id.required'=>'Iltimos hodim lavozimini tanlang.',
+            'department_id.required'=>'Iltimos hodim bo`limini tanlang.',
+
         ]);
 
         $user->name = $new['name'];
+        $user->role_id = $new['role_id'];
+        $user->department_id = $new['department_id'];
         $user->email = $new['email'];
         $user->password = $new['password'];
-        $user->position = $new['position'];
         $user->phone = $new['phone'];
 
         if ($request->image != null) {

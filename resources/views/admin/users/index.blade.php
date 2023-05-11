@@ -44,8 +44,9 @@
                             <th class="" scope="col">T/R</th>
                             <th class="" scope="col"> Ism Familiyasi</th>
                             <th class="" scope="col"> Rasmi</th>
-                            <th class="" scope="col"> Lavozimi</th>
                             <th class="" scope="col"> Telefon raqami</th>
+                            <th class="" scope="col"> Lavozimi </th>
+                            <th class="" scope="col"> Bo'limi </th>
 
                         </tr>
                         </thead>
@@ -63,9 +64,12 @@
                                     <img src="{{asset('users/'.$user->image)}}" alt="" width="100px" height="100px">
                                 </td>
 
-                                <td>{{ $user->position }}</td>
-
                                 <td>{{ $user->phone }}</td>
+
+                                <td>{{ $user->role->name }}</td>
+
+                                <td>{{ $user->department->name }}</td>
+
 
                                 <td class="col-2">
 
@@ -90,7 +94,6 @@
                                         <?php
                                     }
                                         ?>
-
 
 
 

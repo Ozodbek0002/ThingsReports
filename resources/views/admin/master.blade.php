@@ -104,8 +104,7 @@
 <!-- / Layout wrapper -->
 
 
-<!-- Core JS -->
-@yield('script')
+
 
 <!-- build:js assets/vendor/js/core.js -->
 <script src="{{asset('/assets/vendor/libs/jquery/jquery.js')}}"></script>
@@ -136,7 +135,8 @@
 
 </script>
 
-
+<!-- Core JS -->
+@yield('script')
 
 
 <script>
@@ -165,35 +165,7 @@
 
 </script>
 
-<script>
-    $('#from_user').change(function() {
-        var selectedUserId = $(this).val();
-        var users=@json($users);
-        var otherUsers= users.filter(function(user) {
-            return user.id != selectedUserId;
-        });
-        $('#to_user').empty();
-        // Add an option for each product returned from the server
-        $.each(otherUsers, function(index, user) {
-            $('#to_user').append('<option value="' + user.id + '">' + user.name + '</option>');
-        });
 
-        $.ajax({
-            url: "{{route('admin.user-products','')}}" + "/" + selectedUserId,
-            type: 'GET',
-            dataType: 'json',
-            success: function(products) {
-                $('#user_products').empty();
-                // Add an option for each product returned from the server
-                $.each(products, function(index, product) {
-                    $('#user_products').append('<option value="' + product.id + '">' + product.name + '</option>');
-                });
-            },
-            error: function(xhr, status, error) {
-                $('#user_products').empty();
-            }
-        });
-    });
-</script>
+
 </body>
 </html>

@@ -12,9 +12,9 @@ return new class extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->default('Ko`chirish');
-            $table->foreignId('from_user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('from_room_id')->constrained('rooms')->onDelete('cascade');
+            $table->foreignId('to_room_id')->constrained('rooms')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->foreignId('to_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

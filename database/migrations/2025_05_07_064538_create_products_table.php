@@ -14,12 +14,10 @@ return new class extends Migration
             $table->string('name');
             $table->bigInteger('code');
             $table->string('image')->nullable();
-            $table->integer('count')->default(1);
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->default(1);
+            $table->integer('amount')->default(1);
+            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade')->default(1);
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
-
-
 
             $table->timestamps();
         });

@@ -11,26 +11,27 @@ class ProductSeeder extends Seeder
 
     public function run(): void
     {
+
         $product = Product::create([
-            'name' => 'Parta ',
-            'count'=> 10,
+            'name' => 'stul',
             'code' => '123456',
             'image' => null,
+            'amount'=> 1,
+            'room_id' => 1,
             'category_id' => 1,
-            'user_id' => 1,
             'unit_id' => 1,
-
         ]);
 
         $product = Product::create([
-            'name' => 'kursi',
-            'count'=> 40,
+            'name' => 'stul',
             'code' => '123456',
             'image' => null,
+            'amount'=> 1,
+            'room_id' => 1,
             'category_id' => 1,
-            'user_id' => 1,
             'unit_id' => 1,
-
         ]);
+
+
     }
 }

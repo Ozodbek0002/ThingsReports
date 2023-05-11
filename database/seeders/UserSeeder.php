@@ -15,26 +15,43 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'Ozodbek',
+            'name' => 'Secret',
             'email' => 'secret@gmail.com',
-            'password' => Hash::make('secret'),
-            'type' => 1,
-            'position' => 'admin',
+            'password' => Hash::make('secret001'),
+            'phone' => '912770919',
+            'role_id' => 1,
+            'department_id'=>4, // admin
+
         ]);
 
         $user = User::create([
-            'name' => 'Boqqi',
-            'email' => 'boqqi@gmail.com',
-            'password' => Hash::make('secret'),
-            'position' => 'employee',
+            'name' => 'Fayzullo', // 2
+            'email' => 'fayzulla@gmail.com',
+            'password' => Hash::make('fayzulla001'),
+            'phone' => '912770919',
+            'role_id' => 2,
+            'department_id'=>1, // bugalteriya
         ]);
 
         $user = User::create([
-            'name' => 'Shoxrux',
-            'email' => 'Shoxrux@gmail.com',
-            'password' => Hash::make('secret'),
-            'position' => 'employee',
+            'name' => 'Abrorbek',// 3
+            'email' => 'abrorbek@gmail.com',
+            'password' => Hash::make('abrorbek001'),
+            'phone' => '912770919',
+            'role_id' => 2,
+            'department_id'=>2, // telekamunikatsiya t kafedra
         ]);
+
+        $user = User::create([
+            'name' => 'Sardor', // 4
+            'email' => 'sardor@gmail.com',
+            'password' => Hash::make('sardor001'),
+            'phone' => '912770919',
+            'role_id' => 2,
+            'department_id'=>3, // dasturiy injenering kafedrasi
+        ]);
+
+
 
     }
 }

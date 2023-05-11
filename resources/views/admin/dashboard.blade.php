@@ -10,9 +10,9 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">Assalomu Alaykum {{ Auth()->user()->name }}</h5>
+                            <h5 class="card-title text-primary"> Assalomu Alaykum {{ Auth()->user()->name }}</h5>
                             <p class="mb-4">
-                                Hozircha <span class="fw-bold"></span> o'sish yaxshi
+                                Hozircha hammasi yaxshi
                             </p>
 
                             {{--                        <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>--}}
@@ -49,8 +49,8 @@
                                 </div>
 
                             </div>
-                            <span class="fw-semibold d-block mb-1"> Sotilgan kitoblar soni </span>
-{{--                            <h3 class="card-title mb-2"> {{ $sell_books_count }}   </h3>--}}
+                            <span class="fw-semibold d-block mb-1"> Mahsulotlar  soni </span>
+                            <h3 class="card-title mb-2"> {{ $products->count() }}   </h3>
                         </div>
                     </div>
                 </div>
@@ -65,8 +65,8 @@
                                         class="rounded"/>
                                 </div>
                             </div>
-                            <span>O'qilayotgan kitoblar soni</span>
-{{--                            <h3 class="card-title text-nowrap mb-1"> {{ $reading_books_count }} </h3>--}}
+                            <span> Hodimlar soni </span>
+                            <h3 class="card-title text-nowrap mb-1"> {{ $users->count() }} </h3>
                         </div>
                     </div>
                 </div>
@@ -109,8 +109,8 @@
                                 </div>
 
                             </div>
-                            <span class="d-block mb-1">Kitob turlari</span>
-{{--                            <h3 class="card-title text-nowrap mb-2">{{ $books_count }} ta</h3>--}}
+                            <span class="d-block mb-1"> Kategoriyalar soni </span>
+                            <h3 class="card-title text-nowrap mb-2">{{ $categories->count() }} </h3>
                         </div>
                     </div>
                 </div>

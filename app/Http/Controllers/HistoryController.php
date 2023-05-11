@@ -49,8 +49,9 @@ class HistoryController extends Controller
     }
 
 
-    public function edit(History $history)
+    public function edit($id)
     {
+        $history = History::find($id);
         $users = User::all();
         $products = Product::all();
         return view('admin.transactions.edit', [
@@ -61,15 +62,17 @@ class HistoryController extends Controller
     }
 
 
-    public function update(UpdateHistoryRequest $request, History $history)
+    public function update(UpdateHistoryRequest $request, $id)
     {
+        $history = History::find($id);
         $history->update($request->all());
         return redirect()->route('admin.transactions');
     }
 
 
-    public function destroy(History $history)
+    public function destroy($id)
     {
+        $history = History::find($id);
         $history->delete();
         return redirect()->route('admin.transactions')->with('msg', ' Aperatsiya muvaffaqiyatli o`chirildi.');
     }

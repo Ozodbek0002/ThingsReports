@@ -8,7 +8,7 @@
 
                 <div class="row ">
 
-                    <div class="col-md-3"><h1 class="card-title"> Aperatsiyalar </h1></div>
+                    <div class="col-md-3"><h1 class="card-title"> Operatsiyalar </h1></div>
 
                     <div class="col-md-6">
 
@@ -65,6 +65,7 @@
                                 <td>{{ $history->product->name }}</td>
 
                                 <td>{{ $history->to_user->name }}</td>
+
                                 <td>{{ $history->created_at }}</td>
 
                                 <td class="col-2">
@@ -102,11 +103,8 @@
                                                       method="post">
                                                     @csrf
                                                     @method('DELETE')
-
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal"> Yopish
-                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal"> Yopish </button>
                                                         <button type="submit" class="btn btn-danger">O'chirish</button>
                                                     </div>
                                                 </form>
@@ -124,17 +122,17 @@
 
                     </table>
 
-                    {{--                    <div class="container">--}}
-                    {{--                        <div class="row justify-content-center">--}}
+                    <div class="container">
+                        <div class="row justify-content-center">
 
-                    {{--                            @if ($histories->links())--}}
-                    {{--                                <div class="mt-4 p-4 box has-text-centered">--}}
-                    {{--                                    {{ $histories->links() }}--}}
-                    {{--                                </div>--}}
-                    {{--                            @endif--}}
+                            @if ($histories->links())
+                                <div class="mt-4 p-4 box has-text-centered">
+                                    {{ $histories->links() }}
+                                </div>
+                            @endif
 
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
+                        </div>
+                    </div>
 
 
                 </div>
