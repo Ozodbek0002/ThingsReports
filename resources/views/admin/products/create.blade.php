@@ -51,7 +51,7 @@
                         <div class="form-group ">
                             <label for=""> Masul inson </label>
                             <select name="user_id" id="department_users" class="form-control">
-                                <option value=""> Tanlang</option>
+                                <option value=""> Tanlang </option>
                             </select>
 
                         </div>
@@ -86,15 +86,15 @@
                         {{--                        Unit--}}
                         <div class="form-group ">
                             <label for=""> Birligi </label>
+
                             <select name="unit_id" value="{{old('unit_id')}}" class="form-control">
                                 @foreach($units as $c)
                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
-                            @error('unit_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+
                         </div>
+
 
                         <br>
                         {{--                        Amount--}}
@@ -106,6 +106,7 @@
                             @enderror
                         </div>
 
+
                         <br>
                         {{--                        Image--}}
                         <div class="form-group ">
@@ -115,6 +116,7 @@
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+
 
                         <br>
                         {{--                        Code--}}
@@ -130,7 +132,7 @@
                         <br>
                         <br>
 
-                        <button type="submit" id="alert" class="btn btn-primary " onclick="end()">Saqlash</button>
+                        <button type="submit" id="alert" class="btn btn-primary">Saqlash</button>
                         <input type="reset" class="btn btn-danger" value="Tozalash">
 
 

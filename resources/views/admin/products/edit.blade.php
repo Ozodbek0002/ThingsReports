@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-10"><h1 class="card-title">Kitob tahrirlash </h1></div>
+                    <div class="col-10"><h1 class="card-title"> Mahsulot tahrirlash </h1></div>
                 </div>
                 <hr>
                 <div class="card-body">
@@ -26,10 +26,48 @@
 
 
                         <br>
+                        {{--                        Departments--}}
+                        <div class="form-group ">
+                            <label> Bo'limni tanlang </label>
+                            <select name="department_id" id="selectedDepartment" class="form-control">
+                                {{--                                <option value=" {{ $product->department_id }} "> {{ $product-> }}  </option>--}}
+                                <option value=""> Tanlang</option>
+
+                                @foreach($departments as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+
+                        <br>
+                        {{--                        Users--}}
+                        <div class="form-group ">
+                            <label for=""> Masul inson </label>
+                            <select name="user_id" id="department_users" class="form-control">
+                                <option value=""> Tanlang</option>
+                            </select>
+
+                        </div>
+
+
+                        <br>
+                        {{--                        Rooms--}}
+                        <div class="form-group ">
+                            <label for=""> Kerakli xona </label>
+                            <select name="room_id" id="user_rooms" class="form-control" required>
+                                <option value=""> Tanlang</option>
+                            </select>
+                        </div>
+
+
+                        <br>
                         {{--                        Amount--}}
                         <div class="form-group">
                             <label for="author"> Miqdori </label>
-                            <input type="number" name="count" value="{{$product->amount}}" class="form-control "
+                            <input type="number" name="amount" value="{{$product->amount}}" class="form-control "
                                    id="author">
                         </div>
 
@@ -88,7 +126,7 @@
                         <br>
                         <br>
 
-                        <button type="submit" id="alert" class="btn btn-primary "> Saqlash</button>
+                        <button type="submit" id="alert" class="btn btn-primary "> Saqlash </button>
                         <input type="reset" class="btn btn-danger" value="Tozalash">
 
 
@@ -99,6 +137,61 @@
         </div>
 
     </div>
+
+@endsection
+
+
+@section('script')
+
+    <script>
+
+        // Departments` Users
+        $('#selectedDepartment').change(function () {
+            var selectedDepartmentId = $(this).val();
+
+
+            $.ajax({
+                url: "{{route('admin.department-user','')}}" + "/" + selectedDepartmentId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (users) {
+                    $('#department_users').empty();
+                    // Add an option for each product returned from the server
+                    $.each(users, function (index, user) {
+                        $('#department_users').append('<option value="' + user.id + '">' + user.name + '</option>');
+                    });
+                },
+                error: function (xhr, status, error) {
+                    $('#department_users').empty();
+                }
+            });
+        });
+
+
+        // Users` Rooms
+        $('#department_users').change(function () {
+            var selectedUserId = $(this).val();
+
+
+            $.ajax({
+                url: "{{route('admin.user-rooms','')}}" + "/" + selectedUserId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (rooms) {
+                    $('#user_rooms').empty();
+                    // Add an option for each product returned from the server
+                    $.each(rooms, function (index, room) {
+                        $('#user_rooms').append('<option value="' + room.id + '">' + room.name + '</option>');
+                    });
+                },
+                error: function (xhr, status, error) {
+                    $('#user_rooms').empty();
+                }
+            });
+        });
+
+
+    </script>
 
 @endsection
 

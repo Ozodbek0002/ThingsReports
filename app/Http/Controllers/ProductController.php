@@ -67,12 +67,12 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $units = Unit::all();
-        $users = User::all();
+        $departments = Department::all();
         return view('admin.products.edit', [
             'product'=>$product,
             'categories'=>$categories,
             'units'=>$units,
-            'users'=>$users,
+            'departments'=>$departments,
         ]);
     }
 
