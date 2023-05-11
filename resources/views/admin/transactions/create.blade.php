@@ -101,9 +101,11 @@
         $('#from_user').change(function () {
             var selectedUserId = $(this).val();
             var users =@json($users);
+
             var otherUsers = users.filter(function (user) {
                 return user.id != selectedUserId;
             });
+
             $('#to_user').empty();
             // Add an option for each product returned from the server
             $.each(otherUsers, function (index, user) {
@@ -126,6 +128,8 @@
                 }
             });
         });
+
+
     </script>
 
 @endsection
