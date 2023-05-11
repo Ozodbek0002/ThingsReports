@@ -20,6 +20,7 @@
                         @csrf
 
 
+{{--                        Name--}}
                         <div class="form-group ">
                             <label for=""> Aperatsiya nomi </label>
                             <input type="text" name="name" value="{{old('name')}}" class="form-control">
@@ -32,8 +33,10 @@
                         <br>
 
 
+{{--                        From--}}
                         <div class="form-group ">
                             <label for=""> Kimdan </label>
+
                             <select name="from_user_id" id="from_user" value="{{old('from_user_id')}}"
                                     class="form-control">
                                 <option value="0"> Tanlang</option>
@@ -41,6 +44,8 @@
                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
+
+
                             @error('from_user_id')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -49,11 +54,10 @@
                         <br>
                         <br>
 
-
+{{--                        Product--}}
                         <div class="form-group ">
                             <label for=""> Mahsulot </label>
-                            <select name="product_id" id="user_products" value="{{old('product_id')}}"
-                                    class="form-control">
+                            <select name="product_id" id="user_products" value="{{old('product_id')}}"  class="form-control">
                                 <option value=""> Tanlang</option>
                             </select>
                             @error('product_id')
@@ -61,10 +65,10 @@
                             @enderror
                         </div>
 
+
                         <br>
                         <br>
-
-
+{{--To--}}
                         <div class="form-group ">
                             <label for=""> Kimga </label>
                             <select name="to_user_id" id="to_user" value="{{old('to_user_id')}}" required

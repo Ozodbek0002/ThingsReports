@@ -82,7 +82,13 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('admin.users.edit',[ 'user'=>$user]);
+        $roles = Role::all();
+        $departments = Department::all();
+        return view('admin.users.edit',[
+            'user'=>$user,
+            'roles'=>$roles,
+            'departments'=>$departments,
+        ]);
     }
 
 

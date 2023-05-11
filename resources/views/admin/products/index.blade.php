@@ -45,9 +45,10 @@
                             <th class="" scope="col">T/R</th>
                             <th class="" scope="col"> Nomi</th>
                             <th class="" scope="col"> Rasmi</th>
-                            <th class="" scope="col"> Masul hodim</th>
-                            <th class="" scope="col"> Kategoriya</th>
-                            <th class="" scope="col"> Soni</th>
+                            <th class="" scope="col"> Masul hodim </th>
+                            <th class="" scope="col"> Xona </th>
+                            <th class="" scope="col"> Kategoriya </th>
+                            <th class="" scope="col"> Miqdori </th>
                             <th class="" scope="col"> Birligi</th>
                             <th class="" scope="col"> Interval raqami</th>
                             <th class="" scope="col"> Qo'shilgan vaqt</th>
@@ -67,11 +68,13 @@
                                          height="100px">
                                 </td>
 
-                                <td>{{ $product->user->name }}</td>
+                                <td>{{ $product->room->user->name }}</td>
+
+                                <td>{{ $product->room->name }}</td>
 
                                 <td>{{ $product->category->name }}</td>
 
-                                <td @if($product->count==0) style="color: red" @endif >{{ $product->count }}</td>
+                                <td> {{ $product->amount }} </td>
 
                                 <td>{{ $product->unit->name }}</td>
 

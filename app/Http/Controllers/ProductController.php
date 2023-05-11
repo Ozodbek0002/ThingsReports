@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -27,10 +28,12 @@ class ProductController extends Controller
         $categories = Category::all();
         $units = Unit::all();
         $users = User::all();
+        $departments = Department::all();
         return view('admin.products.create', [
             'categories'=>$categories,
             'units'=>$units,
             'users'=>$users,
+            'departments'=>$departments,
         ]);
     }
 

@@ -11,39 +11,31 @@
                 <hr>
                 <div class="card-body">
 
-                    <form action="{{route('admin.products.update',$product->id)}}" method="POST" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
+                    <form action="{{route('admin.products.update',$product->id)}}" method="POST" accept-charset="UTF-8"
+                          method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
+                        {{--                        Name--}}
                         <div class="form-group">
-                            <label for="title">Mahsulot nomii </label>
-                            <input type="text" id="name" name="name" value="{{$product->name}}" class="form-control" required>
+                            <label for="title">Mahsulot nomi </label>
+                            <input type="text" id="name" name="name" value="{{$product->name}}" class="form-control"
+                                   required>
                         </div>
 
+                        <br>
+                        {{--                        Amount--}}
                         <div class="form-group">
-                            <label  for="author"> Soni</label>
-                            <input type="number" name="count" value="{{$product->count}}" class="form-control " id="author">
+                            <label for="author"> Miqdori </label>
+                            <input type="number" name="count" value="{{$product->amount}}" class="form-control "
+                                   id="author">
                         </div>
 
-
+                        <br>
+                        {{--                        Kategory--}}
                         <div class="form-group">
                             <label for=""> Kategoriyasi </label>
-                            <select  name="user_id" id="like_to" class="form-control">
-                                <option value="{{$product->user_id}}" style="color: blue">
-                                    {{ $product->user->name }}
-                                </option>
-                                @foreach($users as $c)
-                                    @if($product->user->name != $c->name)
-                                        <option value="{{$c->id}}">{{$c->name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-
-
-                          <div class="form-group">
-                            <label for=""> Kategoriyasi </label>
-                            <select  name="category_id" id="like_to" class="form-control">
+                            <select name="category_id" id="like_to" class="form-control">
                                 <option value="{{$product->category_id}}" style="color: blue">
                                     {{ $product->category->name }}
                                 </option>
@@ -56,12 +48,11 @@
                         </div>
 
 
-
-
-
+                        <br>
+                        {{--                        Unit--}}
                         <div class="form-group">
                             <label for=""> Birligi </label>
-                            <select  name="unit_id" id="like_to" class="form-control">
+                            <select name="unit_id" id="like_to" class="form-control">
                                 <option value="{{$product->unit_id}}" style="color: blue">
                                     {{ $product->unit->name }}
                                 </option>
@@ -73,28 +64,34 @@
                             </select>
                         </div>
 
+
+                        <br>
+                        {{--                        Image--}}
                         <div class="form-group">
                             <label class="text text-primary" for="image"> Rasm yuklang </label>
                             <input type="file" id="image" class="form-control" name="image">
                         </div>
 
+                        <br>
+                        {{--                        Code--}}
                         <div class="form-group">
-                            <label  for="author"> Interval no`mer </label>
-                            <input type="number" name="code" value="{{$product->code}}" class="form-control " id="author">
-                        </div>
-
-                        <div class="form-group">
-                            <label  for="author"> Soni </label>
-                            <input type="number" name="count" value="{{$product->count}}" class="form-control " id="author">
+                            <label for="author"> Interval no`mer </label>
+                            <input type="number" name="code" value="{{$product->code}}" class="form-control "
+                                   id="author">
                         </div>
 
                         <br>
 
-                        <button type="submit" id="alert" class="btn btn-primary "> Saqlash </button>
+
+
+                        <br>
+
+                        <button type="submit" id="alert" class="btn btn-primary "> Saqlash</button>
                         <input type="reset" class="btn btn-danger" value="Tozalash">
 
 
                     </form>
+
                 </div>
             </div>
         </div>

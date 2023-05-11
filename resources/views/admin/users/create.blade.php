@@ -73,7 +73,7 @@
 
                         {{--                        Departments--}}
                         <div class="form-group ">
-                            <label for=""> Lavozimi </label>
+                            <label for=""> Bo'limi </label>
                             <select name="department_id" value="{{old('department_id')}}" class="form-control">
                                 @foreach($departments as $c)
                                     <option value="{{$c->id}}">{{$c->name}}</option>

@@ -11,11 +11,11 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'count',
+        'amount',
         'code',
         'image',
         'category_id',
-        'user_id',
+        'room_id',
         'unit_id',
     ];
 
@@ -29,10 +29,12 @@ class Product extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    public function user()
+
+    public function room()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Room::class);
     }
+
 
     public function scopeSearch($query, $val)
     {
@@ -54,10 +56,6 @@ class Product extends Model
         return $query->where('unit_id', 'like', '%' . $val . '%');
     }
 
-    public function scopeSearchUser($query, $val)
-    {
-        return $query->where('user_id', 'like', '%' . $val . '%');
-    }
 
 
 }

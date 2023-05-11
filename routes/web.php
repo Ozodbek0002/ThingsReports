@@ -32,6 +32,8 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
     Route::resource('categories', CategoryController::class)->name('index', 'categories');
     Route::resource('units', UnitController::class)->name('index', 'units');
     Route::get('user-products/{id}', [AjaxController::class, 'userProducts'])->name('user-products');
+    Route::get('department-user/{id}', [AjaxController::class, 'departmentUser'])->name('department-user');
+    Route::get('user-rooms/{id}', [AjaxController::class, 'userRooms'])->name('user-rooms');
 
 });
 
