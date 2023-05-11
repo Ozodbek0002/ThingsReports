@@ -19,7 +19,8 @@ class UpdateProductRequest extends FormRequest
             'code'=>'required',
             'category_id'=>'required',
             'unit_id'=>'required',
-            'count'=>'required',
+            'amount'=>'required',
+            'room_id'=>'required',
         ];
     }
 }

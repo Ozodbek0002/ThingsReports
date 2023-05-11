@@ -15,30 +15,30 @@
                 <div class="card-body">
 
 
-
-                    <form action="{{route('admin.products.store')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                    <form action="{{route('admin.products.store')}}" method="POST" accept-charset="UTF-8"
+                          enctype="multipart/form-data">
                         @csrf
 
 
-{{--                        Name--}}
+                        {{--                        Name--}}
                         <div class="form-group ">
                             <label for=""> Mahsulot nomi </label>
                             <input type="text" name="name" value="{{old('name')}}" class="form-control">
                             @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
 
                         <br>
-{{--                        Departments--}}
+                        {{--                        Departments--}}
                         <div class="form-group ">
-                            <label > Bo'limni tanlang  </label>
-                            <select name="department_id" id="selectedDepartment"  class="form-control">
+                            <label> Bo'limni tanlang </label>
+                            <select name="department_id" id="selectedDepartment" class="form-control">
                                 <option value=""> Tanlang</option>
 
                                 @foreach($departments as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
 
                             </select>
@@ -49,7 +49,7 @@
                         <br>
                         {{--                        Users--}}
                         <div class="form-group ">
-                            <label for=""> Masul inson  </label>
+                            <label for=""> Masul inson </label>
                             <select name="user_id" id="department_users" class="form-control">
                                 <option value=""> Tanlang</option>
                             </select>
@@ -57,26 +57,23 @@
                         </div>
 
 
-                          <br>
+                        <br>
                         {{--                        Rooms--}}
                         <div class="form-group ">
-                            <label for=""> Kerakli xona  </label>
+                            <label for=""> Kerakli xona </label>
                             <select name="room_id" id="user_rooms" class="form-control" required>
                                 <option value=""> Tanlang</option>
                             </select>
                         </div>
 
 
-
-
-
                         <br>
                         {{--                        Kategory--}}
-                         <div class="form-group ">
+                        <div class="form-group ">
                             <label for=""> Kategoriyasi </label>
-                            <select name="category_id"  value="{{old('category_id')}}" class="form-control">
+                            <select name="category_id" value="{{old('category_id')}}" class="form-control">
                                 @foreach($categories as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -86,12 +83,12 @@
 
 
                         <br>
-{{--                        Unit--}}
-                         <div class="form-group ">
+                        {{--                        Unit--}}
+                        <div class="form-group ">
                             <label for=""> Birligi </label>
-                            <select name="unit_id"  value="{{old('unit_id')}}" class="form-control">
+                            <select name="unit_id" value="{{old('unit_id')}}" class="form-control">
                                 @foreach($units as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
                             @error('unit_id')
@@ -102,28 +99,28 @@
                         <br>
                         {{--                        Amount--}}
                         <div class="form-group ">
-                            <label for="author">Miqdori</label>
-                            <input type="number" value="{{old('amount')}}" class="form-control" name="count">
+                            <label for="author"> Miqdori </label>
+                            <input type="number" class="form-control" name="amount">
                             @error('amount')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <br>
-{{--                        Image--}}
+                        {{--                        Image--}}
                         <div class="form-group ">
                             <label class="text text-primary" for="file"> Rasm yuklang </label>
                             <input type="file" value="{{old('image')}}" id="image" class="form-control" name="image">
                             @error('image')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <br>
-{{--                        Code--}}
+                        {{--                        Code--}}
                         <div class="form-group ">
                             <label for="author">Interval no`mer</label>
-                            <input type="number" value="{{old('code')}}"  class="form-control" name="code">
+                            <input type="number" value="{{old('code')}}" class="form-control" name="code">
                             @error('code')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -146,13 +143,13 @@
 
     </div>
 
-
 @endsection
 
 @section('script')
 
     <script>
 
+        // Departments` Users
         $('#selectedDepartment').change(function () {
             var selectedDepartmentId = $(this).val();
 
@@ -175,7 +172,8 @@
         });
 
 
-         $('#department_users').change(function () {
+        // Users` Rooms
+        $('#department_users').change(function () {
             var selectedUserId = $(this).val();
 
 
@@ -195,8 +193,6 @@
                 }
             });
         });
-
-
 
 
     </script>

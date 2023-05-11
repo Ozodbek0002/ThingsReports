@@ -45,8 +45,8 @@ class ProductController extends Controller
         $product->code = $request->code;
         $product->category_id = $request->category_id;
         $product->unit_id = $request->unit_id;
-        $product->count = $request->count;
-        $product->user_id = $request->user_id;
+        $product->amount = $request->amount;
+        $product->room_id = $request->room_id;
 
         $imagename = $request->file('image')->getClientOriginalName();
         $request->image->move('products', $imagename);
@@ -83,11 +83,10 @@ class ProductController extends Controller
         $product->code = $request->code;
         $product->category_id = $request->category_id;
         $product->unit_id = $request->unit_id;
-        $product->count = $request->count;
-        $product->user_id = $request->user_id;
+        $product->amount = $request->amount;
+        $product->room_id = $request->room_id;
 
         if ($request->image != null) {
-
             $image_path = public_path("products/{$product->image}");
 
             if (Product::exists($image_path)) {

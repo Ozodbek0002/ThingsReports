@@ -16,12 +16,14 @@
                         @csrf
                         @method('PUT')
 
+
                         {{--                        Name--}}
                         <div class="form-group">
                             <label for="title">Mahsulot nomi </label>
                             <input type="text" id="name" name="name" value="{{$product->name}}" class="form-control"
                                    required>
                         </div>
+
 
                         <br>
                         {{--                        Amount--}}
@@ -30,6 +32,7 @@
                             <input type="number" name="count" value="{{$product->amount}}" class="form-control "
                                    id="author">
                         </div>
+
 
                         <br>
                         {{--                        Kategory--}}
@@ -72,6 +75,7 @@
                             <input type="file" id="image" class="form-control" name="image">
                         </div>
 
+
                         <br>
                         {{--                        Code--}}
                         <div class="form-group">
@@ -80,10 +84,8 @@
                                    id="author">
                         </div>
 
+
                         <br>
-
-
-
                         <br>
 
                         <button type="submit" id="alert" class="btn btn-primary "> Saqlash</button>
