@@ -2,18 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Department;
+use App\Models\{ User, Department, Room };
 
 class AjaxController extends Controller
 {
-    public function userProducts($id){
-        if ($id== 0) {
-            return response()->json([]);
-        }
-        $user = User::find($id);
-        return response()->json($user->products);
-    }
 
     public function departmentUser($id){
         if ($id== 0) {
@@ -29,6 +21,14 @@ class AjaxController extends Controller
         }
         $user = User::find($id);
         return response()->json($user->rooms);
+    }
+
+    public function roomProducts($id){
+        if ($id== 0) {
+            return response()->json([]);
+        }
+        $room = Room::find($id);
+        return response()->json($room->products);
     }
 
 }

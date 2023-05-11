@@ -12,8 +12,8 @@ class History extends Model
     protected $fillable = [
         'name',
         'product_id',
-        'from_user_id',
-        'to_user_id',
+        'from_room_id',
+        'to_room_id',
     ];
 
     public function product()
@@ -21,13 +21,15 @@ class History extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function from_user()
+    public function fromRoom()
     {
-        return $this->belongsTo(User::class,'from_user_id');
+        return $this->belongsTo(Room::class, 'from_room_id');
     }
 
-    public function to_user()
+    public function toRoom()
     {
-        return $this->belongsTo(User::class,'to_user_id');
+        return $this->belongsTo(Room::class, 'to_room_id');
     }
+
+
 }

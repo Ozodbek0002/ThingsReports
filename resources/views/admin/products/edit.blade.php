@@ -25,40 +25,21 @@
                         </div>
 
 
-                        <br>
-                        {{--                        Departments--}}
-                        <div class="form-group ">
-                            <label> Bo'limni tanlang </label>
-                            <select name="department_id" id="selectedDepartment" class="form-control">
-                                {{--                                <option value=" {{ $product->department_id }} "> {{ $product-> }}  </option>--}}
-                                <option value=""> Tanlang</option>
-
-                                @foreach($departments as $c)
-                                    <option value="{{$c->id}}">{{$c->name}}</option>
-                                @endforeach
-
-                            </select>
-
-                        </div>
-
-
-                        <br>
-                        {{--                        Users--}}
-                        <div class="form-group ">
-                            <label for=""> Masul inson </label>
-                            <select name="user_id" id="department_users" class="form-control">
-                                <option value=""> Tanlang</option>
-                            </select>
-
-                        </div>
-
 
                         <br>
                         {{--                        Rooms--}}
                         <div class="form-group ">
                             <label for=""> Kerakli xona </label>
                             <select name="room_id" id="user_rooms" class="form-control" required>
-                                <option value=""> Tanlang</option>
+                                <option value="{{$product->room_id}}" style="color: blue">
+                                    {{ $product->room->name }}
+                                </option>
+                                @foreach($rooms as $c)
+                                    @if($product->room->name != $c->name)
+                                        <option value="{{$c->id}}">{{$c->name}}</option>
+                                    @endif
+                                @endforeach
+
                             </select>
                         </div>
 
@@ -141,59 +122,6 @@
 @endsection
 
 
-@section('script')
-
-    <script>
-
-        // Departments` Users
-        $('#selectedDepartment').change(function () {
-            var selectedDepartmentId = $(this).val();
-
-
-            $.ajax({
-                url: "{{route('admin.department-user','')}}" + "/" + selectedDepartmentId,
-                type: 'GET',
-                dataType: 'json',
-                success: function (users) {
-                    $('#department_users').empty();
-                    // Add an option for each product returned from the server
-                    $.each(users, function (index, user) {
-                        $('#department_users').append('<option value="' + user.id + '">' + user.name + '</option>');
-                    });
-                },
-                error: function (xhr, status, error) {
-                    $('#department_users').empty();
-                }
-            });
-        });
-
-
-        // Users` Rooms
-        $('#department_users').change(function () {
-            var selectedUserId = $(this).val();
-
-
-            $.ajax({
-                url: "{{route('admin.user-rooms','')}}" + "/" + selectedUserId,
-                type: 'GET',
-                dataType: 'json',
-                success: function (rooms) {
-                    $('#user_rooms').empty();
-                    // Add an option for each product returned from the server
-                    $.each(rooms, function (index, room) {
-                        $('#user_rooms').append('<option value="' + room.id + '">' + room.name + '</option>');
-                    });
-                },
-                error: function (xhr, status, error) {
-                    $('#user_rooms').empty();
-                }
-            });
-        });
-
-
-    </script>
-
-@endsection
 
 
 

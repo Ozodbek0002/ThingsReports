@@ -34,10 +34,14 @@ class HistoryController extends Controller
 
     public function store(StoreHistoryRequest $request)
     {
-        if ($request->from_user_id == $request->to_user_id) {
-            return redirect()->route('admin.transactions')->withErrors( 'Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
+        if ($request->from_room_id == $request->to_room_id) {
+            return redirect()->route('admin.transactions')->withErrors('Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
         } else {
             History::create($request->all());
+            $product = Product::find($request->product_id);
+            $product->update([
+                'room_id' => $request->to_room_id,
+            ]);
             return redirect()->route('admin.transactions')->with('msg', 'O`tkazma muvaffaqiyatli amalga oshirildi.');
         }
     }

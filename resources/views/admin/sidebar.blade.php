@@ -79,12 +79,31 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.departments') ? 'active' : '' }}">
+            <a href="{{route('admin.departments')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-compass"></i>
+                <div data-i18n="Tables"> Bo'limlar </div>
+            </a>
+        </li>
+
+
         <li class="menu-item {{ Route::is('admin.users') ? 'active' : '' }}">
             <a href="{{route('admin.users')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bxl-unsplash"></i>
                 <div data-i18n="Tables"> Hodimlar </div>
             </a>
         </li>
+
+
+
+        <li class="menu-item {{ Route::is('admin.rooms') ? 'active' : '' }}">
+            <a href="{{route('admin.rooms')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-home"></i>
+                <div data-i18n="Tables"> Xonalar </div>
+            </a>
+        </li>
+
+
 
 
         <li class="menu-item {{ Route::is('admin.products') ? 'active' : '' }}">
@@ -103,20 +122,17 @@
         </li>
 
 
-{{--         <li class="menu-item {{ Route::is('admin.clients') ? 'active' : '' }}">--}}
-{{--            <a href="{{route('admin.dashboard')}}" class="menu-link ">--}}
-{{--                <i class="menu-icon tf-icons bx bx-history"></i>--}}
-{{--                <div data-i18n="Tables"> Tarixlar </div>--}}
-{{--            </a>--}}
-{{--        </li>--}}
 
 
-        <li class="menu-item {{ Route::is('admin.categories') ? 'active' : '' }}">
+         <li class="menu-item {{ Route::is('admin.categories') ? 'active' : '' }}">
             <a href="{{route('admin.categories')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bx-category"></i>
                 <div data-i18n="Tables"> Kategoriyalar </div>
             </a>
         </li>
+
+
+
 
 
         <li class="menu-item {{ Route::is('admin.units') ? 'active' : '' }}">

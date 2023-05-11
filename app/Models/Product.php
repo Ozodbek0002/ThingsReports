@@ -19,6 +19,7 @@ class Product extends Model
         'unit_id',
     ];
 
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -28,7 +29,6 @@ class Product extends Model
     {
         return $this->belongsTo(Unit::class);
     }
-
 
     public function room()
     {

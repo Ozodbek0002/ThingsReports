@@ -44,8 +44,10 @@
                             <th class="" scope="col">T/R</th>
                             <th class="" scope="col"> Nomi</th>
                             <th class="" scope="col"> Kimdan</th>
-                            <th class="" scope="col"> Mahsulot</th>
+                            <th class="" scope="col"> Xonadan</th>
+                            <th class="" scope="col"> Mahsulo t</th>
                             <th class="" scope="col"> Kimga</th>
+                            <th class="" scope="col"> Xonaga</th>
                             <th class="" scope="col"> Vaqti</th>
                             <th class="" scope="col"> Amallar</th>
 
@@ -60,11 +62,17 @@
 
                                 <td>{{ $history->name  }}</td>
 
-                                <td>{{ $history->from_user->name }}</td>
+                                <td>{{ $history->fromRoom->name }}</td>
+
+                                <td>{{ $history->fromRoom->user->name }}</td>
+
 
                                 <td>{{ $history->product->name }}</td>
 
-                                <td>{{ $history->to_user->name }}</td>
+
+                                <td>{{ $history->toRoom->name }}</td>
+
+                                <td>{{ $history->toRoom->user->name }}</td>
 
                                 <td>{{ $history->created_at }}</td>
 
@@ -104,7 +112,9 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal"> Yopish </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal"> Yopish
+                                                        </button>
                                                         <button type="submit" class="btn btn-danger">O'chirish</button>
                                                     </div>
                                                 </form>

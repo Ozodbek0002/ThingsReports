@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Category;
-use App\Models\Unit;
-use App\Models\User;
-use App\Models\Department;
 use Illuminate\Support\Facades\File;
+use App\Models\{ Product,Category,Unit,User, Department,Room };
 
 class ProductController extends Controller
 {
@@ -67,12 +63,12 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $units = Unit::all();
-        $departments = Department::all();
+        $rooms = Room::all();
         return view('admin.products.edit', [
             'product'=>$product,
             'categories'=>$categories,
             'units'=>$units,
-            'departments'=>$departments,
+            'rooms'=>$rooms,
         ]);
     }
 

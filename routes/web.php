@@ -11,6 +11,8 @@ use App\Http\Controllers\{
     HistoryController,
     AjaxController,
     ProfileController,
+    DepartmentController,
+    RoomController
 };
 
 
@@ -31,9 +33,12 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
     Route::resource('transactions', HistoryController::class)->name('index', 'transactions');
     Route::resource('categories', CategoryController::class)->name('index', 'categories');
     Route::resource('units', UnitController::class)->name('index', 'units');
-    Route::get('user-products/{id}', [AjaxController::class, 'userProducts'])->name('user-products');
+    Route::resource('departments', DepartmentController::class)->name('index', 'departments');
+    Route::resource('rooms', RoomController::class)->name('index', 'rooms');
+
     Route::get('department-user/{id}', [AjaxController::class, 'departmentUser'])->name('department-user');
     Route::get('user-rooms/{id}', [AjaxController::class, 'userRooms'])->name('user-rooms');
+Route::get('room-products/{id}', [AjaxController::class, 'roomProducts'])->name('room-products');
 
 });
 
