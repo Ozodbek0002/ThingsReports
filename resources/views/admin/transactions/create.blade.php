@@ -69,6 +69,7 @@
                             @error('product_id')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
+
                         </div>
 
 
@@ -84,6 +85,7 @@
                                 <option value="">Tanlang</option>
                             </select>
                         </div>
+
 
                         <br>
                         {{--                        Rooms--}}

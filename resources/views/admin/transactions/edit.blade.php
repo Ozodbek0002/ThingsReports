@@ -1,4 +1,6 @@
 @extends('Admin.master')
+
+
 @section('content')
 
     <div class="col-md-12">
@@ -16,6 +18,7 @@
                         @csrf
                         @method('PUT')
 
+
 {{--                        Name--}}
                         <div class="form-group ">
                             <label for=""> Aperatsiya nomi </label>
@@ -27,19 +30,32 @@
 
                         <br> <br>
 
-{{--                        From--}}
+
+{{--                        From User --}}
                         <div class="form-group ">
                             <label for=""> Kimdan </label>
-                            <select name="from_user_id" id="from_user" value="" required  class="form-control">
-                                <option value="{{$history->from_user_id}}"> {{ $history->from_user->name }} </option>
+                            <select name="from_room_id" id="department_users"  class="form-control">
+                                <option style="background-color: #696CFF; color: white" > {{ $history->fromRoom->user->name }} </option>
                                 @foreach($users as $c)
-                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                    @if($c->id != $history->fromRoom->user->id)
+                                        <option value="{{$c->id}}">{{$c->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
-                            @error('from_user_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+
                         </div>
+
+                        <br>
+                        {{--                        Rooms--}}
+                        <div class="form-group ">
+                            <label for=""> Xonadan </label>
+                            <select name="from_room_id" id="user_rooms" class="form-control" required>
+                                <option value="{{$history->from_room_id}}"> {{ $history->fromRoom->name }} </option>
+                                <option value=""> Tanlang </option>
+                            </select>
+                        </div>
+
+
 
                         <br> <br>
 
@@ -48,25 +64,32 @@
                             <label for=""> Mahsulot </label>
                             <select name="product_id" id="user_products" value="" required  class="form-control">
                                 <option value="{{ $history->product_id }}"> {{ $history->product->name }} </option>
+
                             </select>
-                            @error('product_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+
                         </div>
 
                         <br> <br>
 
-{{--                        To--}}
+{{--                        To User--}}
                         <div class="form-group ">
                             <label for=""> Kimga </label>
-                            <select name="to_user_id" id="to_user" value="" required
-                                    class="form-control">
-                                <option value="{{ $history->to_user_id }}"> {{ $history->to_user->name }} </option>
+                            <select name="to_room_id" id="to_user"  class="form-control">
+                                <option value=""> {{ $history->toRoom->user->name }} </option>
                             </select>
-                            @error('to_user_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
                         </div>
+
+
+                        <br>
+                        {{--                        Rooms--}}
+                        <div class="form-group ">
+                            <label for=""> Xonaga </label>
+                            <select name="to_room_id" id="to_user_rooms" class="form-control" required>
+                                <option value="{{ $history->to_room_id }}"> {{ $history->toRoom->name }} </option>
+                                <option value=""> Tanlang</option>
+                            </select>
+                        </div>
+
 
 
                         <br>
@@ -89,20 +112,46 @@
 
     <script>
 
-        $('#from_user').change(function () {
+        // Users` Rooms
+        $('#department_users').change(function () {
             var selectedUserId = $(this).val();
             var users =@json($users);
+
             var otherUsers = users.filter(function (user) {
                 return user.id != selectedUserId;
             });
+
             $('#to_user').empty();
             // Add an option for each product returned from the server
             $.each(otherUsers, function (index, user) {
                 $('#to_user').append('<option value="' + user.id + '">' + user.name + '</option>');
             });
 
+
             $.ajax({
-                url: "{{route('admin.user-products','')}}" + "/" + selectedUserId,
+                url: "{{route('admin.user-rooms','')}}" + "/" + selectedUserId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (rooms) {
+                    $('#user_rooms').empty();
+                    // Add an option for each product returned from the server
+                    $.each(rooms, function (index, room) {
+                        $('#user_rooms').append('<option value="' + room.id + '">' + room.name + '</option>');
+                    });
+                },
+                error: function (xhr, status, error) {
+                    $('#user_rooms').empty();
+                }
+            });
+        });
+
+
+        // Room`s Products
+        $('#user_rooms').change(function () {
+            var selectedRoomId = $(this).val();
+
+            $.ajax({
+                url: "{{route('admin.room-products','')}}" + "/" + selectedRoomId,
                 type: 'GET',
                 dataType: 'json',
                 success: function (products) {
@@ -116,10 +165,38 @@
                     $('#user_products').empty();
                 }
             });
+
         });
+
+
+        // OtherUsers` Rooms
+        $('#to_user').change(function () {
+            var selectedUserId = $(this).val();
+
+
+            $.ajax({
+                url: "{{route('admin.user-rooms','')}}" + "/" + selectedUserId,
+                type: 'GET',
+                dataType: 'json',
+                success: function (rooms) {
+                    $('#to_user_rooms').empty();
+                    // Add an option for each product returned from the server
+                    $.each(rooms, function (index, room) {
+                        $('#to_user_rooms').append('<option value="' + room.id + '">' + room.name + '</option>');
+                    });
+                },
+                error: function (xhr, status, error) {
+                    $('#to_user_rooms').empty();
+                }
+            });
+        });
+
+
     </script>
 
+
 @endsection
+
 
 
 

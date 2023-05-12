@@ -62,17 +62,19 @@
 
                                 <td>{{ $history->name  }}</td>
 
+                                <td>{{ $history->fromRoom->user->name }}</td>
+
                                 <td>{{ $history->fromRoom->name }}</td>
 
-                                <td>{{ $history->fromRoom->user->name }}</td>
 
 
                                 <td>{{ $history->product->name }}</td>
 
 
+                                <td>{{ $history->toRoom->user->name }}</td>
+
                                 <td>{{ $history->toRoom->name }}</td>
 
-                                <td>{{ $history->toRoom->user->name }}</td>
 
                                 <td>{{ $history->created_at }}</td>
 

@@ -104,6 +104,23 @@
         </li>
 
 
+        <li class="menu-item {{ Route::is('admin.categories') ? 'active' : '' }}">
+            <a href="{{route('admin.categories')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Tables"> Kategoriyalar </div>
+            </a>
+        </li>
+
+
+
+        <li class="menu-item {{ Route::is('admin.units') ? 'active' : '' }}">
+            <a href="{{route('admin.units')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-unite"></i>
+                <div data-i18n="Tables"> Birliklar </div>
+            </a>
+        </li>
+
+
 
 
         <li class="menu-item {{ Route::is('admin.products') ? 'active' : '' }}">
@@ -123,24 +140,6 @@
 
 
 
-
-         <li class="menu-item {{ Route::is('admin.categories') ? 'active' : '' }}">
-            <a href="{{route('admin.categories')}}" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-category"></i>
-                <div data-i18n="Tables"> Kategoriyalar </div>
-            </a>
-        </li>
-
-
-
-
-
-        <li class="menu-item {{ Route::is('admin.units') ? 'active' : '' }}">
-            <a href="{{route('admin.units')}}" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-unite"></i>
-                <div data-i18n="Tables"> Birliklar </div>
-            </a>
-        </li>
 
 
 

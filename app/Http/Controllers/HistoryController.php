@@ -23,7 +23,7 @@ class HistoryController extends Controller
 
     public function create()
     {
-        $users = User::all();
+        $users = User::all()->except(1);
         $products = Product::all();
         return view('admin.transactions.create', [
             'users' => $users,
@@ -56,7 +56,7 @@ class HistoryController extends Controller
     public function edit($id)
     {
         $history = History::find($id);
-        $users = User::all();
+        $users = User::all()->except(1);
         $products = Product::all();
         return view('admin.transactions.edit', [
             'history' => $history,
@@ -69,8 +69,17 @@ class HistoryController extends Controller
     public function update(UpdateHistoryRequest $request, $id)
     {
         $history = History::find($id);
+        $product = Product::find($request->product_id);
+
+        if ($request->from_room_id == $request->to_room_id) {
+            return redirect()->route('admin.transactions')->withErrors('Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
+        } else {
+            $product->update([
+                'room_id' => $request->to_room_id,
+            ]);
         $history->update($request->all());
-        return redirect()->route('admin.transactions');
+        return redirect()->route('admin.transactions')->with('msg', 'O`tkazma muvaffaqiyatli yangilandi.');
+        }
     }
 
 
