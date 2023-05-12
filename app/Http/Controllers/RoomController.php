@@ -34,9 +34,12 @@ class RoomController extends Controller
     }
 
 
-    public function show(Room $rooms)
+    public function show($id)
     {
-        //
+        $room = Room::find($id);
+        return view('admin.rooms.show', [
+            'room'=>$room,
+        ]);
     }
 
 

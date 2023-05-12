@@ -1,7 +1,6 @@
 @extends('Admin.master')
 @section('content')
 
-
     <div class="row">
 
         <div class="col-lg-8 mb-4 order-0">
@@ -15,7 +14,6 @@
                                 Hozircha hammasi yaxshi
                             </p>
 
-                            {{--                        <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>--}}
                         </div>
                     </div>
                     <div class="col-sm-5 text-center text-sm-left">
@@ -49,8 +47,8 @@
                                 </div>
 
                             </div>
-                            <span class="fw-semibold d-block mb-1"> Mahsulotlar  soni </span>
-                            <h3 class="card-title mb-2"> {{ $products->count() }}   </h3>
+                            <span class="fw-semibold d-block mb-1"> Bo'limlar  soni </span>
+                            <h3 class="card-title mb-2"> {{ $departments->count() }}   </h3>
                         </div>
                     </div>
                 </div>
@@ -81,17 +79,26 @@
             <div class="card">
                 <div class="row row-bordered g-0">
                     <div class="col-md-8">
-                        <h5 class="card-header m-0 me-2 pb-3"> Umumiy sotuv </h5>
-                        <div id="totalRevenueChart" class="px-2">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                        <h5 class="card-header m-0 me-2 pb-3"> Bizdagi bo'limlar ( Xodimlar ) </h5>
+
+                        @foreach($departments as $d)
+
+                            <div class="container">
+
+                                <a href="{{route('admin.departments.show',$d->id)}}">
+                                    <i class="bx bx-building-house"></i> {{ $d->name }}
+                                </a> ( {{ $d->users->count() }} )
+
+                            </div>
+                            <br>
+
+                        @endforeach
+
 
                     </div>
                 </div>
             </div>
         </div>
-
 
 
         <!--/ Total Revenue -->
@@ -109,8 +116,8 @@
                                 </div>
 
                             </div>
-                            <span class="d-block mb-1"> Kategoriyalar soni </span>
-                            <h3 class="card-title text-nowrap mb-2">{{ $categories->count() }} </h3>
+                            <span class="d-block mb-1"> Xonalar soni </span>
+                            <h3 class="card-title text-nowrap mb-2">{{ $rooms->count() }} </h3>
                         </div>
                     </div>
                 </div>
@@ -119,14 +126,15 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
+
                                 <div class="avatar flex-shrink-0">
                                     <img src="{{ asset('/assets/img/icons/unicons/cc-primary.png') }}" alt="Credit Card"
                                          class="rounded"/>
                                 </div>
 
                             </div>
-                            <span class="fw-semibold d-block mb-1"> Foyda (sum)</span>
-{{--                            <h3 class="card-title mb-2">{{  number_format( $books_price, 0, ',', ' ') }}</h3>--}}
+                            <span class="fw-semibold d-block mb-1"> Mahsulotlar soni</span>
+                            <h3 class="card-title mb-2">{{ $products->count() }}</h3>
                         </div>
                     </div>
                 </div>
@@ -134,52 +142,30 @@
             </div>
 
 
-
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
-                                <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
-                                    <div class="card-title">
-                                        <h5 class="text-nowrap mb-2">Umumiy kitoblar soni </h5>
-                                    </div>
-                                    <div class="mt-sm-auto">
-{{--                                        <h3 class="mb-0"> {{ $all_books_count }} ta</h3>--}}
-                                    </div>
-                                </div>
-                                <div id="profileReportChart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{--            <div class="row">--}}
+            {{--                <div class="col-12 mb-4">--}}
+            {{--                    <div class="card">--}}
+            {{--                        <div class="card-body">--}}
+            {{--                            <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">--}}
+            {{--                                <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">--}}
+            {{--                                    <div class="card-title">--}}
+            {{--                                        <h5 class="text-nowrap mb-2"> Umumiy kitoblar soni  </h5>--}}
+            {{--                                    </div>--}}
+            {{--                                    <div class="mt-sm-auto">--}}
+            {{--                                        <h3 class="mb-0"> {{ $all_books_count }} ta</h3>--}}
+            {{--                                    </div>--}}
+            {{--                                </div>--}}
+            {{--                                <div id="profileReportChart"></div>--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
 
 
         </div>
 
     </div>
 
-
-
-
-
 @endsection
 
-@section('script')
-
-{{--    <script >--}}
-{{--        var months = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];--}}
-{{--        var rent_monthly = @json($rent_monthly) ;--}}
-{{--        var sell_monthly = @json($sell_monthly) ;--}}
-{{--        var all_books_monthly = @json($all_books_monthly) ;--}}
-
-
-
-
-
-{{--    </script>--}}
-
-
-
-@endsection

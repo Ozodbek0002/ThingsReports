@@ -31,9 +31,12 @@ class DepartmentController extends Controller
     }
 
 
-    public function show(Department $departments)
+    public function show($id)
     {
-        //
+        $department = Department::find($id);
+        return view('admin.departments.show',[
+            'department'=>$department,
+        ]);
     }
 
 
