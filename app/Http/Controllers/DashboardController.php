@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $rooms = Room::all();
-        $departments = Department::all()->except(4);
+        $departments = Department::all()->except(1);
         $users = User::all()->except(1);
         $products = Product::all();
         return view('admin.dashboard', [

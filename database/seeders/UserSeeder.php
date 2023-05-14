@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('secret001'),
             'phone' => '912770919',
             'role_id' => 1,
-            'department_id'=>4, // admin
+            'department_id'=>1, // admin
 
         ]);
 
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('fayzulla001'),
             'phone' => '912770919',
             'role_id' => 2,
-            'department_id'=>1, // bugalteriya
+            'department_id'=>2, // bugalteriya
         ]);
 
         $user = User::create([
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('abrorbek001'),
             'phone' => '912770919',
             'role_id' => 2,
-            'department_id'=>2, // telekamunikatsiya t kafedra
+            'department_id'=>3, // telekamunikatsiya t kafedra
         ]);
 
         $user = User::create([

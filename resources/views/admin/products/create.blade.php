@@ -34,7 +34,7 @@
                         {{--                        Departments--}}
                         <div class="form-group ">
                             <label> Bo'limni tanlang </label>
-                            <select name="department_id" id="selectedDepartment" class="form-control">
+                            <select name="department_id" value="{{old('department_id')}}"  id="selectedDepartment" class="form-control">
                                 <option value=""> Tanlang</option>
 
                                 @foreach($departments as $c)
@@ -52,6 +52,7 @@
                             <label for=""> Masul inson </label>
                             <select name="user_id" id="department_users" class="form-control">
                                 <option value=""> Tanlang </option>
+                                <option value=""> Tanlang </option>
                             </select>
 
                         </div>
@@ -61,7 +62,7 @@
                         {{--                        Rooms--}}
                         <div class="form-group ">
                             <label for=""> Kerakli xona </label>
-                            <select name="room_id" id="user_rooms" class="form-control" required>
+                            <select name="room_id"  id="user_rooms" class="form-control" required>
                                 <option value=""> Tanlang</option>
                             </select>
                         </div>
@@ -100,10 +101,12 @@
                         {{--                        Amount--}}
                         <div class="form-group ">
                             <label for="author"> Miqdori </label>
-                            <input type="number" class="form-control" name="amount">
+                            <input type="number" value="{{old('amount')}}" class="form-control" name="amount" >
+
                             @error('amount')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
+
                         </div>
 
 
@@ -166,6 +169,8 @@
                     $.each(users, function (index, user) {
                         $('#department_users').append('<option value="' + user.id + '">' + user.name + '</option>');
                     });
+                        $('#department_users').append('<option value="">  </option>');
+
                 },
                 error: function (xhr, status, error) {
                     $('#department_users').empty();

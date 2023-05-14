@@ -86,7 +86,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        $departments = Department::all();
+        $departments = Department::all()->except(1);
         return view('admin.users.edit', [
             'user' => $user,
             'roles' => $roles,
@@ -147,6 +147,11 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $image_path = public_path("users/{$user->image}");
+
+        if (User::exists($image_path)) {
+            File::delete($image_path);
+        }
         $user->delete();
         return redirect()->back()->with('msg', 'hodim muavvaqiyatli o`chirildi');
     }

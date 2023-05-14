@@ -15,6 +15,10 @@ class DepartmentsSeeder extends Seeder
     {
 
         $department = Department::create([
+            'name' => 'Barcha bo`limlar',
+        ]);
+
+        $department = Department::create([
             'name' => 'Bugalteriya',
         ]);
 
@@ -26,9 +30,7 @@ class DepartmentsSeeder extends Seeder
             'name' => 'Dasturiy injenering kafedrasi',
         ]);
 
-         $department = Department::create([
-            'name' => 'Barcha bo`limlar',
-        ]);
+
 
 
     }

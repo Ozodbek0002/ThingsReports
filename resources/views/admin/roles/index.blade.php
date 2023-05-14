@@ -175,7 +175,7 @@
                                                 aria-label="Close"></button>
                                     </div>
 
-                                    <form action="{{route('admin.categories.store')}}" method="POST"
+                                    <form action="{{route('admin.roles.store')}}" method="POST"
                                           accept-charset="UTF-8" enctype="multipart/form-data">
                                         @csrf
 

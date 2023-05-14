@@ -43,13 +43,10 @@
                         <thead>
                         <tr>
                             <th class="" scope="col">T/R</th>
-                            <th class="" scope="col"> Nomi</th>
                             <th class="" scope="col"> Rasmi</th>
-                            <th class="" scope="col"> Masul hodim </th>
-                            <th class="" scope="col"> Xona </th>
-                            <th class="" scope="col"> Kategoriya </th>
-                            <th class="" scope="col"> Miqdori </th>
-                            <th class="" scope="col"> Birligi</th>
+                            <th class="" scope="col"> Nomi</th>
+                            <th class="" scope="col"> Masul hodim</th>
+                            <th class="" scope="col"> Xona</th>
                             <th class="" scope="col"> Interval raqami</th>
                             <th class="" scope="col"> Qo'shilgan vaqt</th>
                             <th class="" scope="col">Amallar</th>
@@ -61,28 +58,32 @@
                             <tr>
                                 <td class="col-1">{{($products->currentpage()-1)*($products->perpage())+$ind+1}}</td>
 
-                                <td>{{ $product->name  }}</td>
 
                                 <td>
                                     <img src="{{asset('products/'.$product->image)}}" alt="" width="100px"
                                          height="100px">
                                 </td>
 
+                                <td>{{ $product->name  }}</td>
+
                                 <td>{{ $product->room->user->name }}</td>
 
                                 <td>{{ $product->room->name }}</td>
 
-                                <td>{{ $product->category->name }}</td>
-
-                                <td> {{ $product->amount }} </td>
-
-                                <td>{{ $product->unit->name }}</td>
 
                                 <td>{{ $product->code }}</td>
 
                                 <td>{{ $product->created_at }}</td>
 
                                 <td class="col-2">
+
+                                    <button data-bs-toggle="modal" data-bs-target="#showModal{{$product->id}}"
+                                            type="button" class="btn btn-success  btn-sm">
+                                            <span class="btn-label">
+                                                <i class="bx bxs-show"></i>
+                                            </span>
+                                    </button>
+
 
                                     <a class="btn btn-warning btn-sm"
                                        href="{{ route('admin.products.edit',$product->id) }}">
@@ -98,6 +99,7 @@
                                                 <i class="bx bx-trash"></i>
                                             </span>
                                     </button>
+
 
 
                                     {{-- Delete  Modals--}}
@@ -129,6 +131,51 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+                                    {{-- Show  Modals--}}
+                                    <div class="modal fade" id="showModal{{$product->id}}" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <table class="table table-bordered text-center">
+                                                    <thead>
+                                                    <tr>
+
+                                                        <th class="" scope="col"> Bo'lim </th>
+                                                        <th class="" scope="col"> Kategoriya</th>
+                                                        <th class="" scope="col"> Miqdori</th>
+                                                        <th class="" scope="col"> Birligi</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <tr>
+
+
+                                                            <td>{{ $product->room->user->department->name }}</td>
+
+                                                            <td>{{ $product->category->name }}</td>
+
+                                                            <td> {{ $product->amount }} </td>
+
+                                                            <td>{{ $product->unit->name }}</td>
+
+
+
+                                                        </tr>
+
+
+                                                    </tbody>
+
+                                                </table>
+                                        </div>
+                                    </div>
+
+
+
 
 
                                 </td>

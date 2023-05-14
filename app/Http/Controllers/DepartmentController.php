@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Http\Requests\StoreDepartmentsRequest;
 use App\Http\Requests\UpdateDepartmentsRequest;
+use Illuminate\Support\Facades\Gate;
 
 class DepartmentController extends Controller
 {
 
     public function index()
     {
-        $departments = Department::all();
-        return view('admin.departments.index',[
-            'departments'=>$departments,
-        ]);
+            $departments = Department::all()->except(1);
+            return view('admin.departments.index',[
+                'departments'=>$departments,
+            ]);
+
     }
 
 
@@ -26,8 +28,11 @@ class DepartmentController extends Controller
 
     public function store(StoreDepartmentsRequest $request)
     {
-        Department::create($request->all());
-        return redirect()->route('admin.departments')->with('msg', 'Bo`lim muvaffaqiyatli qo`shildi.');
+        Gate::authorize('create-department', $request->user());
+
+            Department::create($request->all());
+            return redirect()->route('admin.departments')->with('msg', 'Bo`lim muvaffaqiyatli qo`shildi.');
+
     }
 
 
@@ -48,6 +53,7 @@ class DepartmentController extends Controller
 
     public function update(UpdateDepartmentsRequest $request, $id)
     {
+        Gate::authorize('update-post', $request->user());
         Department::find($id)->update($request->all());
         return redirect()->route('admin.departments')->with('msg', 'Bo`lim muvaffaqiyatli tahrirlandi.');
     }

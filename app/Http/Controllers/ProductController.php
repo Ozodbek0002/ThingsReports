@@ -23,8 +23,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $units = Unit::all();
-        $users = User::all();
-        $departments = Department::all();
+        $users = User::all()->except(1);
+        $departments = Department::all()->except(1);
         return view('admin.products.create', [
             'categories'=>$categories,
             'units'=>$units,

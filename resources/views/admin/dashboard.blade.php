@@ -79,7 +79,7 @@
             <div class="card">
                 <div class="row row-bordered g-0">
                     <div class="col-md-8">
-                        <h5 class="card-header m-0 me-2 pb-3"> Bizdagi bo'limlar ( Xodimlar ) </h5>
+                        <h5 class="card-header m-0 me-2 pb-3"> Bizdagi bo'limlar ( Mahsulotlar ) </h5>
 
                         @foreach($departments as $d)
 
@@ -87,7 +87,21 @@
 
                                 <a href="{{route('admin.departments.show',$d->id)}}">
                                     <i class="bx bx-building-house"></i> {{ $d->name }}
-                                </a> ( {{ $d->users->count() }} )
+                                </a> (
+
+                                    <?php
+
+                                        $count = 0;
+                                        foreach ($d->users as $u){
+                                            foreach ($u->rooms as $r){
+                                                $count += $r->products->count();
+                                            }
+                                        }
+                                        echo $count;
+
+                                    ?>
+
+                                )
 
                             </div>
                             <br>

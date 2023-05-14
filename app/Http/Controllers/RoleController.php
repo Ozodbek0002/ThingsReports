@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
@@ -24,38 +25,37 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        //
+
+
+        $role = Role::create($request->all());
+        return redirect()->route('admin.roles')->with('msg', 'Yangi lavozim muvaffaqiyatli qo`shildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
-        //
+        $role = Role::find($id);
+        $role->update($request->all());
+        return redirect()->route('admin.roles')->with('msg', 'Lavozim muvaffaqiyatli yangilandi.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        //
+        $role = Role::find($id);
+        $role->delete();
+        return redirect()->route('admin.roles')->with('msg', 'Lavozim muvaffaqiyatli o`chirildi.');
     }
 }

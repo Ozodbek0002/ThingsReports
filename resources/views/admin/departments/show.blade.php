@@ -18,7 +18,7 @@
                         <thead>
                         <tr>
                             <th class="" scope="col"> T/R </th>
-                            <th class="" scope="col"> Xodimlar ( Xonalari ) </th>
+                            <th class="" scope="col"> Xodimlar ( Mahsulotlar ) </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,7 +29,15 @@
                                     <a href="{{ route('admin.users.show',$u->id) }}">
                                         {{ $u->name }}
                                     </a>
-                                    ( {{ $u->rooms->count()  }} )
+                                    (
+                                        <?php
+                                            $count = 0;
+                                            foreach ($u->rooms as $r){
+                                                $count += $r->products->count();
+                                            }
+                                            echo $count;
+                                        ?>
+                                    )
                                 </td>
                             </tr>
 

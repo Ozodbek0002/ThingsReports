@@ -16,10 +16,9 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'code'=>'required',
+            'code'=>'required|digits:10|unique:products,code',
             'category_id'=>'required',
             'unit_id'=>'required',
-            'amount'=>'required',
             'room_id'=>'required',
         ];
     }
