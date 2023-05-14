@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::all()->except(1);
         $departments = Department::all();
         return view('admin.users.create', [
             'roles' => $roles,

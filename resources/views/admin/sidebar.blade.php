@@ -74,7 +74,7 @@
         <!-- Dashboard -->
         <li class="menu-item {{ Route::is('admin.dashboard') ? 'active' : '' }}">
             <a href="{{route('admin.dashboard')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-stats"></i>
+                <i class="menu-icon tf-icons bx bx-line-chart"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
@@ -87,12 +87,20 @@
         </li>
 
 
+        <li class="menu-item {{ Route::is('admin.roles') ? 'active' : '' }}">
+            <a href="{{route('admin.roles')}}" class="menu-link ">
+                <i class="menu-icon tf-icons bx bx-paste "></i>
+                <div data-i18n="Tables"> Lavozimlar </div>
+            </a>
+        </li>
+
         <li class="menu-item {{ Route::is('admin.users') ? 'active' : '' }}">
             <a href="{{route('admin.users')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bxl-unsplash"></i>
                 <div data-i18n="Tables"> Hodimlar </div>
             </a>
         </li>
+
 
 
 

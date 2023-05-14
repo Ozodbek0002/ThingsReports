@@ -18,7 +18,7 @@
                         <thead>
                         <tr>
                             <th class="" scope="col"> T/R </th>
-                            <th class="" scope="col"> Xodimlar ( xonalar )</th>
+                            <th class="" scope="col"> Xodimlar ( Xonalari ) </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,7 +29,7 @@
                                     <a href="{{ route('admin.users.show',$u->id) }}">
                                         {{ $u->name }}
                                     </a>
-                                    ( {{ $u->rooms->count() }} )
+                                    ( {{ $u->rooms->count()  }} )
                                 </td>
                             </tr>
 
