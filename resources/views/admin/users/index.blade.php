@@ -47,6 +47,7 @@
                             <th class="" scope="col"> Telefon raqami</th>
                             <th class="" scope="col"> Lavozimi </th>
                             <th class="" scope="col"> Bo'limi </th>
+                            <th class="" scope="col"> Amallar </th>
 
                         </tr>
                         </thead>
@@ -73,27 +74,36 @@
 
                                 <td class="col-2">
 
-                                    <a class="btn btn-warning btn-sm"
-                                       href="{{ route('admin.users.edit',$user->id) }}">
+                                        <a class="btn btn-success btn-sm"
+                                           href="{{ route('admin.users.show',$user->id) }}">
+                                            <span class="btn-label">
+                                                  <i class="bx bxs-show"></i>
+                                            </span>
+                                        </a>
+
+
+                                    @if( auth()->user()->id ==1 )
+
+                                        <a class="btn btn-warning btn-sm"
+                                           href="{{ route('admin.users.edit',$user->id) }}">
                                             <span class="btn-label">
                                                 <i class="bx bx-pen"></i>
                                             </span>
-                                    </a>
+                                        </a>
 
 
-                                        <?php
-                                    if (1 != $user->id){
-                                        ?>
-                                    <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$user->id}}"
-                                            type="button" class="btn btn-danger  btn-sm">
+                                        @if($user->id!=1)
+
+                                            <button data-bs-toggle="modal" data-bs-target="#deleteModal{{$user->id}}"
+                                                    type="button" class="btn btn-danger  btn-sm">
                                                 <span class="btn-label">
                                                     <i class="bx bx-trash"></i>
                                                 </span>
-                                    </button>
+                                            </button>
 
-                                        <?php
-                                    }
-                                        ?>
+                                        @endif
+
+                                    @endif
 
 
 

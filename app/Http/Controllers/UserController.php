@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\File;
 use App\Models\Department;
 use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -24,6 +25,8 @@ class UserController extends Controller
 
     public function create()
     {
+        Gate::authorize('user', auth()->user());
+
         $roles = Role::all()->except(1);
         $departments = Department::all();
         return view('admin.users.create', [
@@ -35,6 +38,7 @@ class UserController extends Controller
 
     public function store(Request $request, User $user)
     {
+        Gate::authorize('user', auth()->user());
         $data = new User();
 
         $user = $request->validate([
@@ -85,6 +89,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        Gate::authorize('user', auth()->user());
+
         $roles = Role::all();
         $departments = Department::all()->except(1);
         return view('admin.users.edit', [
@@ -147,6 +153,8 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        Gate::authorize('user', auth()->user());
+
         $image_path = public_path("users/{$user->image}");
 
         if (User::exists($image_path)) {

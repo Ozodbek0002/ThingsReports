@@ -1,4 +1,3 @@
-
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
     <div class="app-brand demo">
@@ -79,62 +78,64 @@
             </a>
         </li>
 
-        <li class="menu-item {{ Route::is('admin.departments') ? 'active' : '' }}">
-            <a href="{{route('admin.departments')}}" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-compass"></i>
-                <div data-i18n="Tables"> Bo'limlar </div>
-            </a>
-        </li>
+        @if (Auth::user()->role_id == 1)
+
+            <li class="menu-item {{ Route::is('admin.departments') ? 'active' : '' }}">
+                <a href="{{route('admin.departments')}}" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-compass"></i>
+                    <div data-i18n="Tables"> Bo'limlar</div>
+                </a>
+            </li>
 
 
-        <li class="menu-item {{ Route::is('admin.roles') ? 'active' : '' }}">
-            <a href="{{route('admin.roles')}}" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-paste "></i>
-                <div data-i18n="Tables"> Lavozimlar </div>
-            </a>
-        </li>
+            <li class="menu-item {{ Route::is('admin.roles') ? 'active' : '' }}">
+                <a href="{{route('admin.roles')}}" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-paste "></i>
+                    <div data-i18n="Tables"> Lavozimlar</div>
+                </a>
+            </li>
+
+        @endif
 
         <li class="menu-item {{ Route::is('admin.users') ? 'active' : '' }}">
             <a href="{{route('admin.users')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bxl-unsplash"></i>
-                <div data-i18n="Tables"> Hodimlar </div>
+                <div data-i18n="Tables"> Hodimlar</div>
             </a>
         </li>
 
 
+        @if (Auth::user()->role_id == 1)
 
-
-        <li class="menu-item {{ Route::is('admin.rooms') ? 'active' : '' }}">
-            <a href="{{route('admin.rooms')}}" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-home"></i>
-                <div data-i18n="Tables"> Xonalar </div>
-            </a>
-        </li>
+            <li class="menu-item {{ Route::is('admin.rooms') ? 'active' : '' }}">
+                <a href="{{route('admin.rooms')}}" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-home"></i>
+                    <div data-i18n="Tables"> Xonalar</div>
+                </a>
+            </li>
+        @endif
 
 
         <li class="menu-item {{ Route::is('admin.categories') ? 'active' : '' }}">
             <a href="{{route('admin.categories')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bx-category"></i>
-                <div data-i18n="Tables"> Kategoriyalar </div>
+                <div data-i18n="Tables"> Kategoriyalar</div>
             </a>
         </li>
-
 
 
         <li class="menu-item {{ Route::is('admin.units') ? 'active' : '' }}">
             <a href="{{route('admin.units')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bx-unite"></i>
-                <div data-i18n="Tables"> Birliklar </div>
+                <div data-i18n="Tables"> Birliklar</div>
             </a>
         </li>
-
-
 
 
         <li class="menu-item {{ Route::is('admin.products') ? 'active' : '' }}">
             <a href="{{route('admin.products')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bxl-product-hunt"></i>
-                <div data-i18n="Tables"> Mahsulotlar </div>
+                <div data-i18n="Tables"> Mahsulotlar</div>
             </a>
         </li>
 
@@ -142,13 +143,9 @@
         <li class="menu-item {{ Route::is('admin.transactions') ? 'active' : '' }}">
             <a href="{{route('admin.transactions')}}" class="menu-link ">
                 <i class="menu-icon tf-icons bx bx-transfer-alt"></i>
-                <div data-i18n="Tables"> Operatsiyalar </div>
+                <div data-i18n="Tables"> Operatsiyalar</div>
             </a>
         </li>
-
-
-
-
 
 
     </ul>

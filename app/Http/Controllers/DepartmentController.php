@@ -53,7 +53,8 @@ class DepartmentController extends Controller
 
     public function update(UpdateDepartmentsRequest $request, $id)
     {
-        Gate::authorize('update-post', $request->user());
+        Gate::authorize('update-department', $request->user());
+
         Department::find($id)->update($request->all());
         return redirect()->route('admin.departments')->with('msg', 'Bo`lim muvaffaqiyatli tahrirlandi.');
     }
