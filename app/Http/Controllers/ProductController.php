@@ -64,54 +64,73 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        $units = Unit::all();
-        $rooms = Room::all();
-        return view('admin.products.edit', [
-            'product'=>$product,
-            'categories'=>$categories,
-            'units'=>$units,
-            'rooms'=>$rooms,
-        ]);
+        if ( $product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1 ) {
+            $categories = Category::all();
+            $units = Unit::all();
+            $rooms = Room::all();
+            return view('admin.products.edit', [
+                'product' => $product,
+                'categories' => $categories,
+                'units' => $units,
+                'rooms' => $rooms,
+            ]);
+        }
+        else {
+            return redirect()->route('admin.products')->withErrors( 'Sizda bunday huquq yo`q.');
+        }
+
     }
 
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->name = $request->name;
-        $product->code = $request->code;
-        $product->category_id = $request->category_id;
-        $product->unit_id = $request->unit_id;
-        $product->amount = $request->amount;
-        $product->room_id = $request->room_id;
+        if ($product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1 ) {
+            $product->name = $request->name;
+            $product->code = $request->code;
+            $product->category_id = $request->category_id;
+            $product->unit_id = $request->unit_id;
+            $product->amount = $request->amount;
+            $product->room_id = $request->room_id;
 
-        if ($request->image != null) {
+            if ($request->image != null) {
+                $image_path = public_path("products/{$product->image}");
+
+                if (Product::exists($image_path)) {
+                    File::delete($image_path);
+                }
+
+                $imagename = $request->file('image')->getClientOriginalName();
+                $request->image->move('products', $imagename);
+                $product->image = $imagename;
+            }
+
+            $product->save();
+            return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli yangilandi.');
+        }
+        else{
+            return redirect()->route('admin.products')->withErrors( 'Sizda bunday huquq yo`q.');
+
+        }
+
+    }
+
+
+    public function destroy(Product $product)
+    {
+        if ($product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1 ) {
+
             $image_path = public_path("products/{$product->image}");
 
             if (Product::exists($image_path)) {
                 File::delete($image_path);
             }
 
-            $imagename = $request->file('image')->getClientOriginalName();
-            $request->image->move('products', $imagename);
-            $product->image = $imagename;
+            $product->delete();
+            return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli o`chirildi.');
         }
-
-        $product->save();
-        return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli yangilandi.');
-    }
-
-
-    public function destroy(Product $product)
-    {
-        $image_path = public_path("products/{$product->image}");
-
-        if (Product::exists($image_path)) {
-            File::delete($image_path);
+        else{
+            return redirect()->route('admin.products')->withErrors( 'Sizda bunday huquq yo`q.');
         }
-
-        $product->delete();
-        return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli o`chirildi.');
 
     }
 }

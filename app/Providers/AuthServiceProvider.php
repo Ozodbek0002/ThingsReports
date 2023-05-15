@@ -26,7 +26,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role->id == 1;
         });
 
-
         Gate::define('create-department', function (User $user) {
             return $user->role->id == 1;
         });

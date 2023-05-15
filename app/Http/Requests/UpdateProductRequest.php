@@ -16,7 +16,7 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'code'=>'required|digits:10|unique:products,code',
+            'code'=>'required|digits:10',
             'category_id'=>'required',
             'unit_id'=>'required',
             'room_id'=>'required',
