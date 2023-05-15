@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\File;
-use App\Models\{ Product,Category,Unit,User, Department,Room };
+use App\Models\{Product, Category, Unit, User, Department, Room};
 
 class ProductController extends Controller
 {
@@ -13,8 +13,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(5);
-        return view('admin.products.index',[
-            'products'=>$products,
+        return view('admin.products.index', [
+            'products' => $products,
         ]);
     }
 
@@ -26,45 +26,51 @@ class ProductController extends Controller
         $users = User::all()->except(1);
         $departments = Department::all()->except(1);
         return view('admin.products.create', [
-            'categories'=>$categories,
-            'units'=>$units,
-            'users'=>$users,
-            'departments'=>$departments,
+            'categories' => $categories,
+            'units' => $units,
+            'users' => $users,
+            'departments' => $departments,
         ]);
     }
 
 
     public function store(StoreProductRequest $request)
     {
-        $product = new Product();
-        $product->name = $request->name;
-        $product->code = $request->code;
-        $product->category_id = $request->category_id;
-        $product->unit_id = $request->unit_id;
-        $product->amount = $request->amount;
-        $product->room_id = $request->room_id;
+        if ($request->user_id == auth()->user()->id || auth()->user()->role->id == 1) {
+            $product = new Product();
+            $product->name = $request->name;
+            $product->code = $request->code;
+            $product->category_id = $request->category_id;
+            $product->unit_id = $request->unit_id;
+            $product->amount = $request->amount;
+            $product->room_id = $request->room_id;
 
-        $imagename = $request->file('image')->getClientOriginalName();
-        $request->image->move('products', $imagename);
-        $product->image = $imagename;
+            $imagename = $request->file('image')->getClientOriginalName();
+            $request->image->move('products', $imagename);
+            $product->image = $imagename;
 
-        $product->save();
-        return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli qo`shildi.');
+            $product->save();
+            return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli qo`shildi.');
+        }
+        else {
+            return redirect()->route('admin.products')->withErrors('Siz faqat o`zingiz uchun yangi mahsulot qo`sha olasiz.');
+        }
     }
+
 
 
     public function show($id)
     {
         $product = Product::find($id);
         return view('admin.products.show', [
-            'product'=>$product,
+            'product' => $product,
         ]);
     }
 
 
     public function edit(Product $product)
     {
-        if ( $product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1 ) {
+        if ($product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1) {
             $categories = Category::all();
             $units = Unit::all();
             $rooms = Room::all();
@@ -74,9 +80,8 @@ class ProductController extends Controller
                 'units' => $units,
                 'rooms' => $rooms,
             ]);
-        }
-        else {
-            return redirect()->route('admin.products')->withErrors( 'Sizda bunday huquq yo`q.');
+        } else {
+            return redirect()->route('admin.products')->withErrors('Sizda bunday huquq yo`q.');
         }
 
     }
@@ -84,7 +89,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        if ($product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1 ) {
+        if ($product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1) {
             $product->name = $request->name;
             $product->code = $request->code;
             $product->category_id = $request->category_id;
@@ -106,9 +111,8 @@ class ProductController extends Controller
 
             $product->save();
             return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli yangilandi.');
-        }
-        else{
-            return redirect()->route('admin.products')->withErrors( 'Sizda bunday huquq yo`q.');
+        } else {
+            return redirect()->route('admin.products')->withErrors('Sizda bunday huquq yo`q.');
 
         }
 
@@ -117,7 +121,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        if ($product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1 ) {
+        if ( auth()->user()->role->id == 1) {
 
             $image_path = public_path("products/{$product->image}");
 
@@ -127,9 +131,8 @@ class ProductController extends Controller
 
             $product->delete();
             return redirect()->route('admin.products')->with('msg', 'Mahsulot muvaffaqiyatli o`chirildi.');
-        }
-        else{
-            return redirect()->route('admin.products')->withErrors( 'Sizda bunday huquq yo`q.');
+        } else {
+            return redirect()->route('admin.products')->withErrors('Sizda bunday huquq yo`q.');
         }
 
     }

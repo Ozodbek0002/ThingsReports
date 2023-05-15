@@ -7,6 +7,7 @@ use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class HistoryController extends Controller
@@ -36,7 +37,10 @@ class HistoryController extends Controller
     {
         if ($request->from_room_id == $request->to_room_id) {
             return redirect()->route('admin.transactions')->withErrors('Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
-        } else {
+        }
+        elseif ($request->user_id != auth()->id() && $request->user_id != 1) {
+            return redirect()->route('admin.transactions')->withErrors('Siz faqat o`zingizdan O`tkazma o`tkaza olasiz.');
+        }else {
             History::create($request->all());
             $product = Product::find($request->product_id);
             $product->update([
@@ -56,13 +60,18 @@ class HistoryController extends Controller
     public function edit($id)
     {
         $history = History::find($id);
-        $users = User::all()->except(1);
-        $products = Product::all();
-        return view('admin.transactions.edit', [
-            'history' => $history,
-            'users' => $users,
-            'products' => $products,
-        ]);
+        if ($history->fromRoom->user->id == auth()->user()->id || $history->toRoom->user->id == 1) {
+            $users = User::all()->except(1);
+            $products = Product::all();
+            return view('admin.transactions.edit', [
+                'history' => $history,
+                'users' => $users,
+                'products' => $products,
+            ]);
+        } else {
+            return redirect()->route('admin.transactions')->withErrors('Siz faqat o`zingiz amalga oshirgan O`tkazmani o`zgartrishingiz mumkin.');
+        }
+
     }
 
 
@@ -73,7 +82,11 @@ class HistoryController extends Controller
 
         if ($request->from_room_id == $request->to_room_id) {
             return redirect()->route('admin.transactions')->withErrors('Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
-        } else {
+        }
+        elseif ($request->user_id != auth()->id() && $request->user_id != 1) {
+            return redirect()->route('admin.transactions')->withErrors('Siz faqat o`zingizdan O`tkazma o`tkaza olasiz.');
+        }
+        else {
             $product->update([
                 'room_id' => $request->to_room_id,
             ]);

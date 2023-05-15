@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Unit;
 use App\Http\Requests\StoreUnitRequest;
 use App\Http\Requests\UpdateUnitRequest;
+use Illuminate\Support\Facades\Gate;
 
 class UnitController extends Controller
 {
@@ -26,6 +27,8 @@ class UnitController extends Controller
 
     public function store(StoreUnitRequest $request)
     {
+        Gate::authorize('unit', auth()->user());
+
         $unit = new Unit();
         $unit->name = $request->name;
         $unit->save();
@@ -48,6 +51,7 @@ class UnitController extends Controller
 
     public function update(UpdateUnitRequest $request, Unit $unit)
     {
+        Gate::authorize('unit', auth()->user());
         $unit->name = $request->name;
         $unit->save();
 
@@ -56,6 +60,8 @@ class UnitController extends Controller
 
     public function destroy(Unit $unit)
     {
+        Gate::authorize('unit', auth()->user());
+
         $unit->delete();
         return redirect()->route('admin.units')->with('msg', 'O`lchov birligi muvaffaqiyatli o`chirildi.');
     }

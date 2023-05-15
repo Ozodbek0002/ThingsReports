@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -25,11 +26,11 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreCategoryRequest $request)
     {
+        Gate::authorize('category', auth()->user());
+
         $category = new Category();
         $category->name = $request->name;
         $category->save();
@@ -52,6 +53,7 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
+        Gate::authorize('category', auth()->user());
         $category->name = $request->name;
         $category->save();
 
@@ -61,6 +63,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        Gate::authorize('category', auth()->user());
         $category->delete();
         return redirect()->route('admin.categories')->with('msg', 'Kategoriya muvaffaqiyatli o`chirildi.');
     }
