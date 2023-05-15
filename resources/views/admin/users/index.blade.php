@@ -45,9 +45,9 @@
                             <th class="" scope="col"> Ism Familiyasi</th>
                             <th class="" scope="col"> Rasmi</th>
                             <th class="" scope="col"> Telefon raqami</th>
-                            <th class="" scope="col"> Lavozimi </th>
-                            <th class="" scope="col"> Bo'limi </th>
-                            <th class="" scope="col"> Amallar </th>
+                            <th class="" scope="col"> Lavozimi</th>
+                            <th class="" scope="col"> Bo'limi</th>
+                            <th class="" scope="col"> Amallar</th>
 
                         </tr>
                         </thead>
@@ -74,12 +74,17 @@
 
                                 <td class="col-2">
 
+
+                                    @if($user->id != 1)
+
                                         <a class="btn btn-success btn-sm"
                                            href="{{ route('admin.users.show',$user->id) }}">
                                             <span class="btn-label">
                                                   <i class="bx bxs-show"></i>
                                             </span>
                                         </a>
+
+                                    @endif
 
 
                                     @if( auth()->user()->id ==1 )
