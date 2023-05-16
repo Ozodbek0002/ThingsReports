@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\File;
-use App\Models\{Product, Category, Unit, User, Department, Room};
+use App\Models\{History, Product, Category, Unit, User, Department, Room};
 
 class ProductController extends Controller
 {
@@ -70,7 +70,10 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        if ($product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1) {
+        $historyproduct = History::find($product->id, 'product_id');
+        if ($historyproduct != null )
+
+        if (  $product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1  ) {
             $categories = Category::all();
             $units = Unit::all();
             $rooms = Room::all();

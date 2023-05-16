@@ -80,6 +80,14 @@
 
         @if (Auth::user()->role_id == 1)
 
+            <li class="menu-item {{ Route::is('admin.roles') ? 'active' : '' }}">
+                <a href="{{route('admin.roles')}}" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-paste "></i>
+                    <div data-i18n="Tables"> Lavozimlar</div>
+                </a>
+            </li>
+
+
             <li class="menu-item {{ Route::is('admin.departments') ? 'active' : '' }}">
                 <a href="{{route('admin.departments')}}" class="menu-link ">
                     <i class="menu-icon tf-icons bx bx-compass"></i>
@@ -88,12 +96,7 @@
             </li>
 
 
-            <li class="menu-item {{ Route::is('admin.roles') ? 'active' : '' }}">
-                <a href="{{route('admin.roles')}}" class="menu-link ">
-                    <i class="menu-icon tf-icons bx bx-paste "></i>
-                    <div data-i18n="Tables"> Lavozimlar</div>
-                </a>
-            </li>
+
 
         @endif
 

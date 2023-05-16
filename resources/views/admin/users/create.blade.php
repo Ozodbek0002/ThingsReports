@@ -7,7 +7,7 @@
 
             <div class="card-header">
                 <div class="row">
-                    <div class="col-10"><h1 class="card-title">Yagi Hodim </h1></div>
+                    <div class="col-10"><h1 class="card-title">Yangi Hodim </h1></div>
                 </div>
 
                 <hr>

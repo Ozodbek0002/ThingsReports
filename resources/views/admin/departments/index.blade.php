@@ -163,7 +163,7 @@
                                 <div class="modal-content container">
 
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-3" id="exampleModalLabel"> Yangi Birlik </h1>
+                                        <h1 class="modal-title fs-3" id="exampleModalLabel"> Yangi Bo'lim </h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                     </div>
@@ -180,6 +180,7 @@
                                             @enderror
                                         </div>
 
+                                        <br>
                                         <br>
 
                                         <button type="submit" id="alert" class="btn btn-primary ">Saqlash</button>
