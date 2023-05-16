@@ -106,7 +106,6 @@ class UserController extends Controller
         $new = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => ['required', 'min:8',],
             'role_id' => 'required',
             'department_id' => 'required',
             'phone' => 'required|digits:9',
@@ -114,8 +113,6 @@ class UserController extends Controller
             'name.required' => 'Iltimos hodim ism familiyasini yozing .',
             'email.required' => 'Iltimos emailni toliq yozing.',
             'email.unique:users' => 'Bu email allaqachon ro`yhatdan o`tgan ',
-            'password.required' => 'Iltimos parolni  yozing.',
-            'password.min:6' => 'Parol 6 ta belgidan kam bo`masligi kerak.',
             'phone.required' => 'Iltimos hodim telefon raqamini yozing.',
             'role_id.required' => 'Iltimos hodim lavozimini tanlang.',
             'department_id.required' => 'Iltimos hodim bo`limini tanlang.',
@@ -126,7 +123,9 @@ class UserController extends Controller
         $user->role_id = $new['role_id'];
         $user->department_id = $new['department_id'];
         $user->email = $new['email'];
-        $user->password = Hash::make($new['password']);
+        if( $new['password'] != null ){
+            $user->password = Hash::make($new['password']);
+        }
         $user->phone = $new['phone'];
 
         if ($request->image != null) {

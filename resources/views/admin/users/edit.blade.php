@@ -96,7 +96,7 @@
 
                         {{--                        Password--}}
                         <div class="form-group">
-                            <label for="author"> Paroli </label>
+                            <label for="author"> Yangi paroli  </label>
                             <input type="password" name="password" value=" {{ \Illuminate\Support\Facades\Hash::check( 'password',$user->password) }} " class="form-control "  id="author">
                         </div>
 

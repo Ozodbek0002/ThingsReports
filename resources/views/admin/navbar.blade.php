@@ -58,20 +58,31 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{route('profile.edit')}}">
-                            <i class="bx bx-user me-2"></i>
-                            <span class="align-middle">My Profile</span>
-                        </a>
+                        <form action="{{route('admin.users.show',auth()->user()->id)}}">
+                            <input type="hidden" name="id" value="{{auth()->user()->id}}">
+                            <button type="submit" class="dropdown-item">
+                                <i class="bx bx-user me-2"></i>
+                                <span class="align-middle">Profilim</span>
+                            </button>
+                        </form>
+
+
                     </li>
+
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
-                    <li>
 
-                        <a class="dropdown-item" href="{{ route('logout') }}">
-                            <i class="bx bx-log-out me-2"></i>
-                            <span class="align-middle"> Chiqish </span>
-                        </a>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                <i class="bx bx-log-out me-2"></i>
+                                <span class="align-middle"> Chiqish </span>
+                            </button>
+                        </form>
+
+
 
                     </li>
                 </ul>
