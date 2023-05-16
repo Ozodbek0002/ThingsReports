@@ -123,8 +123,8 @@ class UserController extends Controller
         $user->role_id = $new['role_id'];
         $user->department_id = $new['department_id'];
         $user->email = $new['email'];
-        if( $new['password'] != null ){
-            $user->password = Hash::make($new['password']);
+        if( $request->password != null ){
+            $user->password = Hash::make($request->password);
         }
         $user->phone = $new['phone'];
 
