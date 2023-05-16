@@ -37,16 +37,16 @@ class HistoryController extends Controller
     {
         if ($request->from_room_id == $request->to_room_id) {
             return redirect()->route('admin.transactions')->withErrors('Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
-        }
-        elseif ($request->user_id != auth()->id() && $request->user_id != 1) {
-            return redirect()->route('admin.transactions')->withErrors('Siz faqat o`zingizdan O`tkazma o`tkaza olasiz.');
-        }else {
+        } elseif ($request->user_id == auth()->id() || auth()->id() == 1) {
             History::create($request->all());
             $product = Product::find($request->product_id);
             $product->update([
                 'room_id' => $request->to_room_id,
             ]);
             return redirect()->route('admin.transactions')->with('msg', 'O`tkazma muvaffaqiyatli amalga oshirildi.');
+        } else {
+            return redirect()->route('admin.transactions')->withErrors('Siz faqat o`zingizdan O`tkazma o`tkaza olasiz.');
+
         }
     }
 
@@ -60,7 +60,7 @@ class HistoryController extends Controller
     public function edit($id)
     {
         $history = History::find($id);
-        if ($history->fromRoom->user->id == auth()->user()->id || $history->toRoom->user->id == 1) {
+        if ($history->fromRoom->user->id == auth()->user()->id || auth()->user()->id == 1) {
             $users = User::all()->except(1);
             $products = Product::all();
             return view('admin.transactions.edit', [
@@ -82,16 +82,14 @@ class HistoryController extends Controller
 
         if ($request->from_room_id == $request->to_room_id) {
             return redirect()->route('admin.transactions')->withErrors('Hodimni o`zidan yana o`ziga o`tkazma amalga oshmaydi.');
-        }
-        elseif ($request->user_id != auth()->id() && $request->user_id != 1) {
-            return redirect()->route('admin.transactions')->withErrors('Siz faqat o`zingizdan O`tkazma o`tkaza olasiz.');
-        }
-        else {
+        } elseif ($request->user_id == auth()->id() || auth()->id() == 1) {
             $product->update([
                 'room_id' => $request->to_room_id,
             ]);
-        $history->update($request->all());
-        return redirect()->route('admin.transactions')->with('msg', 'O`tkazma muvaffaqiyatli yangilandi.');
+            $history->update($request->all());
+            return redirect()->route('admin.transactions')->with('msg', 'O`tkazma muvaffaqiyatli yangilandi.');
+        } else {
+            return redirect()->route('admin.transactions')->withErrors('Siz faqat o`zingizdan O`tkazma o`tkaza olasiz.');
         }
     }
 

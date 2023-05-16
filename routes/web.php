@@ -10,21 +10,17 @@ use App\Http\Controllers\{
     UnitController,
     HistoryController,
     AjaxController,
-    ProfileController,
     DepartmentController,
     RoomController,
-    RoleController
+    RoleController,
+    SearchController,
+    ReportController,
 };
-
 
 
 Route::get('/', function () {
     return view('auth/login');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 
 Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(function () {
@@ -40,7 +36,10 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
 
     Route::get('department-user/{id}', [AjaxController::class, 'departmentUser'])->name('department-user');
     Route::get('user-rooms/{id}', [AjaxController::class, 'userRooms'])->name('user-rooms');
-Route::get('room-products/{id}', [AjaxController::class, 'roomProducts'])->name('room-products');
+    Route::get('room-products/{id}', [AjaxController::class, 'roomProducts'])->name('room-products');
+
+    Route::post('SearchHistory',[SearchController::class,'SearchHistory'])->name('SearchHistory');
+    Route::post('ReportHistory',[ReportController::class,'ReportHistory'])->name('ReportHistory');
 
 });
 

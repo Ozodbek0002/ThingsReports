@@ -21,6 +21,7 @@
                                 </button>
                             </div>
                         </form>
+
                     </div>
 
                     <div class="col-md-3">
@@ -31,6 +32,53 @@
                             Yangi operatsiya
                         </a>
                     </div>
+
+
+                    <div class=" container align-content-center">
+                        <div class="col-md-6 ">
+
+                            <form action="{{ route('admin.SearchHistory') }}" method="post">
+                                @csrf
+                                <div class="input-group">
+                                    <input type="date" name="from_date" class="form-control" placeholder="Qachondan">
+                                    <input type="date" name="to_date" class="form-control" placeholder="Qachongacha">
+
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+
+                                    </button>
+
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                    <div class=" container align-content-center">
+                        <div class="col-md-6 ">
+
+                            <form action="{{ route('admin.ReportHistory') }}" method="post">
+                                @csrf
+                                <div class="input-group">
+
+                                    <input type="date" name="from_date" id="from_date" class="form-control"
+                                           placeholder="Qachondan">
+                                    <input type="date" name="to_date" id="to_date" class="form-control"
+                                           placeholder="Qachongacha">
+
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="fa fa-file-text"></i>
+                                        Hisobot
+                                    </button>
+
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+
 
                 </div>
 
@@ -65,7 +113,6 @@
                                 <td>{{ $history->fromRoom->user->name }}</td>
 
                                 <td>{{ $history->fromRoom->name }}</td>
-
 
 
                                 <td>{{ $history->product->name }}</td>
@@ -152,6 +199,17 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+
+@section('script')
+
+    <script>
+
+
+
+    </script>
 
 @endsection
 
