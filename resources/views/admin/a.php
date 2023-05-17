@@ -2,8 +2,12 @@
 @section('content')
 <div class="card">
     <div class="">
+
+
         <form action="{{route('sifat-bolimi-statistika')}}" method="get"
               class="form-group d-flex justify-content-between align-items-center m-3">
+
+
             <h1 class="text text-center">O'qituvchilar ro'yhati</h1>
 
             <table class="text-center m-2">
@@ -94,7 +98,10 @@
                     </th>
                 </tr>
             </table>
+
         </form>
+
+
     </div>
 
     <div class="card-body border-top border-2 border-primary overflow-auto">
@@ -191,21 +198,18 @@
             @endforeach
         </table>
 
-        {{--            <div class="mt-3">--}}
-            {{--                {{ $teachers->appends([--}}
-            {{--                    'semester' => $options->semester,--}}
-            {{--                    'year' => $options->year,--}}
-            {{--                    'sort'=> $options->sort,--}}
-            {{--                    ])->links() }}--}}
 
-            {{--            </div>--}}
     </div>
+
 </div>
+
+
 @endsection
 
 @section('js')
 <script>
     function sendOptions() {
+
         let mudir_id = document.getElementById('select5').value;
         let year = document.getElementById('select0').value;
         let semester = document.getElementById('select1').value;

@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\History;
 
 class ReportController extends Controller
 {
 
-    public function ReportHistory(Request $request){
-        $histories = History::whereDate('created_at', '>=', $request->from_date)->whereDate('created_at', '<=', $request->to_date)->paginate(10);
+    public function ReportHistory($from_date,$to_date){
+        $histories = History::whereDate('created_at', '>=', $from_date)->whereDate('created_at', '<=',$to_date)->get();
 
-        return view('admin.transactions.index', [
-            'histories' => $histories,
-        ]);
+//        return view('admin.transactions.reports', [
+//            'histories' => $histories,
+//        ]);
 
+        $pdf = Pdf::loadView('admin.transactions.reports', compact("histories","from_date","to_date"));
+        return $pdf->download('report.pdf');
 
     }
 }

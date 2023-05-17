@@ -16,7 +16,7 @@ class RoomController extends Controller
     public function index(   )
     {
         $rooms = Room::all();
-        $departments = Department::all();
+        $departments = Department::all()->except(1);
         return view('admin.rooms.index',[
             'rooms'=>$rooms,
             'departments'=>$departments,

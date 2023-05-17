@@ -39,7 +39,7 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
     Route::get('room-products/{id}', [AjaxController::class, 'roomProducts'])->name('room-products');
 
     Route::post('SearchHistory',[SearchController::class,'SearchHistory'])->name('SearchHistory');
-    Route::post('ReportHistory',[ReportController::class,'ReportHistory'])->name('ReportHistory');
+    Route::get('ReportHistory/{from_date}&{to_date}',[ReportController::class,'ReportHistory'])->name('ReportHistory');
 
 });
 

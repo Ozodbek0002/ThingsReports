@@ -135,14 +135,17 @@
 
 </script>
 
+
 <!-- Core JS -->
 @yield('script')
+
 
 
 <script>
 
     let errors = @json($errors->all());
     @if($errors->any())
+
     let msg = '';
     for (let i = 0; i < errors.length; i++) {
         msg += (i + 1) + '-xatolik ' + errors[i] + '\n';

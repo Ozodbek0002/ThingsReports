@@ -40,38 +40,19 @@
                             <form action="{{ route('admin.SearchHistory') }}" method="post">
                                 @csrf
                                 <div class="input-group">
-                                    <input type="date" name="from_date" class="form-control" placeholder="Qachondan">
-                                    <input type="date" name="to_date" class="form-control" placeholder="Qachongacha">
+
+                                    <input type="date" value="{{ $from_date ?? 0 }}" id="from_date" name="from_date"
+                                           class="form-control" placeholder="Qachondan">
+                                    <input type="date" value="{{ $to_date ?? 0 }}" id="to_date" name="to_date"
+                                           class="form-control" placeholder="Qachongacha">
 
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i>
-
                                     </button>
 
-                                </div>
-                            </form>
-
-
-                        </div>
-                    </div>
-
-                    <div class=" container align-content-center">
-                        <div class="col-md-6 ">
-
-                            <form action="{{ route('admin.ReportHistory') }}" method="post">
-                                @csrf
-                                <div class="input-group">
-
-                                    <input type="date" name="from_date" id="from_date" class="form-control"
-                                           placeholder="Qachondan">
-                                    <input type="date" name="to_date" id="to_date" class="form-control"
-                                           placeholder="Qachongacha">
-
-                                    <button class="btn btn-success" type="submit">
-                                        <i class="fa fa-file-text"></i>
-                                        Hisobot
+                                    <button type="button" onclick="sendOptions()" class="btn btn-success "><i
+                                            class="bx bx-file"></i>Hisobot
                                     </button>
-
                                 </div>
                             </form>
 
@@ -207,7 +188,17 @@
 
     <script>
 
+        function sendOptions() {
 
+            let from_date = document.getElementById('from_date').value;
+            let to_date = document.getElementById('to_date').value;
+
+            console.log(from_date);
+            console.log(to_date);
+
+            let url = 'ReportHistory/' + from_date + '&' + to_date;
+            window.open(url);
+        }
 
     </script>
 
