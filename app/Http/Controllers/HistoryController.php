@@ -7,7 +7,9 @@ use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
 use App\Models\Product;
 use App\Models\User;
+use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Services\DataTable;
 
 
 class HistoryController extends Controller

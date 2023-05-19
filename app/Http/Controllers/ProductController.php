@@ -12,7 +12,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
         return view('admin.products.index', [
             'products' => $products,
         ]);
@@ -71,7 +71,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $historyproduct = History::find($product->id, 'product_id');
-        if ($historyproduct != null )
+        if ($historyproduct != null ){
+
 
         if (  $product->room->user->id == auth()->user()->id || auth()->user()->role->id == 1  ) {
             $categories = Category::all();
@@ -85,6 +86,10 @@ class ProductController extends Controller
             ]);
         } else {
             return redirect()->route('admin.products')->withErrors('Sizda bunday huquq yo`q.');
+        }
+        }
+        else{
+            return redirect()->route('admin.products')->withErrors('Siz bu mahsulotni endi tahrirlay olmaysiz chunki buni ustida operatsiya bajarilgan.');
         }
 
     }

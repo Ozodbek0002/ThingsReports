@@ -7,7 +7,7 @@
 
             <div class="card-header">
                 <div class="row">
-                    <div class="col-10"><h1 class="card-title">Yagi mahsulot </h1></div>
+                    <div class="col-10"><h1 class="card-title">Yangi mahsulot </h1></div>
                 </div>
 
                 <hr>
@@ -49,7 +49,7 @@
                         <br>
                         {{--                        Users--}}
                         <div class="form-group ">
-                            <label for=""> Masul inson </label>
+                            <label for=""> Mas'ul shaxs </label>
                             <select name="user_id" id="department_users" class="form-control">
                                 <option value=""> Tanlang </option>
                                 <option value=""> Tanlang </option>

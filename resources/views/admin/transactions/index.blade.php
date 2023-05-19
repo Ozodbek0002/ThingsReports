@@ -42,9 +42,9 @@
                                 <div class="input-group">
 
                                     <input type="date" value="{{ $from_date ?? 0 }}" id="from_date" name="from_date"
-                                           class="form-control" placeholder="Qachondan">
+                                           class="form-control" required >
                                     <input type="date" value="{{ $to_date ?? 0 }}" id="to_date" name="to_date"
-                                           class="form-control" placeholder="Qachongacha">
+                                           class="form-control" required >
 
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i>
@@ -67,7 +67,7 @@
 
                 <div class="card-body">
 
-                    <table class="table table-bordered text-center">
+                    <table class="table table-bordered text-center" id="transactions-table">
                         <thead>
                         <tr>
                             <th class="" scope="col">T/R</th>
@@ -199,6 +199,9 @@
             let url = 'ReportHistory/' + from_date + '&' + to_date;
             window.open(url);
         }
+
+
+
 
     </script>
 

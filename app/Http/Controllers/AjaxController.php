@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{ User, Department, Room };
+use Illuminate\Http\Request;
+use App\Models\{History, User, Department, Room};
+use Yajra\DataTables\Services\DataTable;
 
 class AjaxController extends Controller
 {
@@ -29,6 +31,19 @@ class AjaxController extends Controller
         }
         $room = Room::find($id);
         return response()->json($room->products);
+    }
+
+
+    public function HistoriesDatatable(Request $request){
+        $histories = History::all();
+
+            return DataTable::of($histories)
+                ->addColumn('action',function ($row){
+                 return '<a  class="btn btn-info " >  test </a>';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+
     }
 
 }

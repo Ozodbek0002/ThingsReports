@@ -12,15 +12,15 @@
 
                     <div class="col-md-6">
 
-                        {{--                        <form action="{{route('admin.search')}}" method="post">--}}
-                        {{--                            @csrf--}}
-                        {{--                            <div class="input-group">--}}
-                        {{--                                <input type="text" name="search" class="form-control" placeholder="Qidirish...">--}}
-                        {{--                                <button class="btn btn-primary" type="submit">--}}
-                        {{--                                    <i class="fa fa-search"></i>--}}
-                        {{--                                </button>--}}
-                        {{--                            </div>--}}
-                        {{--                        </form>--}}
+                        <form action="#" method="post">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Qidirish...">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
 
                     </div>
 
@@ -31,6 +31,33 @@
                             </span>
                             Mahsulot qo'shish
                         </a>
+                    </div>
+
+                    <div class=" container align-content-center">
+                        <div class="col-md-6 ">
+
+                            <form action="{{ route('admin.SearchProduct') }}" method="post">
+                                @csrf
+                                <div class="input-group">
+
+                                    <input type="date" value="{{ $from_date ?? 0 }}" id="from_date" name="from_date"
+                                           class="form-control" required >
+                                    <input type="date" value="{{ $to_date ?? 0 }}" id="to_date" name="to_date"
+                                           class="form-control" required >
+
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+
+                                    <button type="button" onclick="sendOptions()" class="btn btn-success "><i
+                                            class="bx bx-file"></i>Hisobot
+                                    </button>
+
+                                </div>
+                            </form>
+
+
+                        </div>
                     </div>
 
                 </div>
@@ -101,7 +128,6 @@
                                     </button>
 
 
-
                                     {{-- Delete  Modals--}}
                                     <div class="modal fade" id="deleteModal{{$product->id}}" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -143,7 +169,7 @@
                                                     <thead>
                                                     <tr>
 
-                                                        <th class="" scope="col"> Bo'lim </th>
+                                                        <th class="" scope="col"> Bo'lim</th>
                                                         <th class="" scope="col"> Kategoriya</th>
                                                         <th class="" scope="col"> Miqdori</th>
                                                         <th class="" scope="col"> Birligi</th>
@@ -152,34 +178,28 @@
                                                     </thead>
                                                     <tbody>
 
-                                                        <tr>
+                                                    <tr>
 
 
-                                                            <td>{{ $product->room->user->department->name }}</td>
+                                                        <td>{{ $product->room->user->department->name }}</td>
 
-                                                            <td>{{ $product->category->name }}</td>
+                                                        <td>{{ $product->category->name }}</td>
 
-                                                            <td> {{ $product->amount }} </td>
+                                                        <td> {{ $product->amount }} </td>
 
-                                                            <td>{{ $product->unit->name }}</td>
+                                                        <td>{{ $product->unit->name }}</td>
 
 
-
-                                                        </tr>
+                                                    </tr>
 
 
                                                     </tbody>
 
                                                 </table>
+                                            </div>
                                         </div>
-                                    </div>
 
 
-
-
-
-                                </td>
-                            </tr>
                         @endforeach
 
                         </tbody>
@@ -204,6 +224,28 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+
+@section('script')
+
+    <script>
+
+        function sendOptions() {
+
+            let from_date = document.getElementById('from_date').value;
+            let to_date = document.getElementById('to_date').value;
+
+            console.log(from_date);
+            console.log(to_date);
+
+            let url = 'ReportProduct/' + from_date + '&' + to_date;
+            window.open(url);
+        }
+
+
+    </script>
 
 @endsection
 
