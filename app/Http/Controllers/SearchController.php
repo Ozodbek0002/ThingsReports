@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\History;
 
@@ -30,5 +31,23 @@ class SearchController extends Controller
 
     }
 
+
+    public function SearchProducts(Request $request)
+    {
+
+        $products = Product::where('name', 'like', '%' . $request->search . '%')->paginate(10);
+        return view('admin.products.index', [
+            'products' => $products,
+        ]);
+
+    }
+
+    public function ShowUserProducts($id){
+        $user = User::find($id);
+        $rooms = $user->rooms;
+        return view('admin.products.index', [
+            'products' => $products,
+        ]);
+    }
 
 }

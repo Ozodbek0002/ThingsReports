@@ -12,7 +12,7 @@
 
                     <div class="col-md-6">
 
-                        <form action="#" method="post">
+                        <form action="{{route('admin.SearchProducts')}}" method="post">
                             @csrf
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control" placeholder="Qidirish...">
@@ -36,7 +36,7 @@
                     <div class=" container align-content-center">
                         <div class="col-md-6 ">
 
-                            <form action="{{ route('admin.SearchProduct') }}" method="post">
+                            <form action="{{ route('admin.SearchProducts') }}" method="post">
                                 @csrf
                                 <div class="input-group">
 
@@ -93,9 +93,18 @@
 
                                 <td>{{ $product->name  }}</td>
 
-                                <td>{{ $product->room->user->name }}</td>
+                                <td>
+                                    <a href="{{ route('admin.users.show',$product->room->user->id) }}">
+                                        {{ $product->room->user->name }}
+                                    </a>
+                                </td>
 
-                                <td>{{ $product->room->name }}</td>
+                                <td>
+                                    <a href="{{ route('admin.rooms.show',$product->room->id) }}">
+                                    {{ $product->room->name }}
+                                    </a>
+
+                                </td>
 
 
                                 <td>{{ $product->code }}</td>
@@ -181,9 +190,17 @@
                                                     <tr>
 
 
-                                                        <td>{{ $product->room->user->department->name }}</td>
+                                                        <td>
+                                                            <a href="{{ route('admin.departments.show',$product->room->user->department->id) }}">
+                                                            {{ $product->room->user->department->name }}
+                                                            </a>
+                                                        </td>
 
-                                                        <td>{{ $product->category->name }}</td>
+                                                        <td>
+                                                            <a href="{{ route('admin.categories.show',$product->category->id) }}">
+                                                            {{ $product->category->name }}
+                                                            </a>
+                                                        </td>
 
                                                         <td> {{ $product->amount }} </td>
 

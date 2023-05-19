@@ -38,8 +38,10 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth'])->group(funct
     Route::get('user-rooms/{id}', [AjaxController::class, 'userRooms'])->name('user-rooms');
     Route::get('room-products/{id}', [AjaxController::class, 'roomProducts'])->name('room-products');
 
+    Route::Post('SearchProducts',[SearchController::class,'SearchProducts'])->name('SearchProducts');
     Route::post('SearchHistory',[SearchController::class,'SearchHistory'])->name('SearchHistory');
     Route::post('SearchProduct',[SearchController::class,'SearchProduct'])->name('SearchProduct');
+    Route::get('ShowUserProducts/{id}',[SearchController::class,'ShowUserProducts'])->name('ShowUserProducts');
     Route::get('ReportHistory/{from_date}&{to_date}',[ReportController::class,'ReportHistory'])->name('ReportHistory');
     Route::get('ReportProduct/{from_date}&{to_date}',[ReportController::class,'ReportProduct'])->name('ReportProduct');
 //    Route::post('HistoriesDatatable',[AjaxController::class,'HistoriesDatatable'])->name('HistoriesDatatable');

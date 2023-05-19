@@ -14,7 +14,7 @@ class ReportController extends Controller
 
 
         $pdf = Pdf::loadView('admin.transactions.reports', compact("histories","from_date","to_date"));
-        return $pdf->download('report.pdf');
+        return $pdf->download('Transactions-Report.pdf');
 
     }
 
@@ -22,7 +22,7 @@ class ReportController extends Controller
         $products = Product::whereDate('created_at', '>=', $from_date)->whereDate('created_at', '<=',$to_date)->get();
 
         $pdf = Pdf::loadView('admin.products.reports', compact("products","from_date","to_date"));
-        return $pdf->download('report.pdf');
+        return $pdf->download('Products-Report.pdf');
 
     }
 }

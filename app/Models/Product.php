@@ -36,25 +36,12 @@ class Product extends Model
     }
 
 
-    public function scopeSearch($query, $val)
+    public function histories()
     {
-        return $query->where('name', 'like', '%' . $val . '%');
+        return $this->hasMany(History::class);
     }
 
-    public function scopeSearchCode($query, $val)
-    {
-        return $query->where('code', 'like', '%' . $val . '%');
-    }
 
-    public function scopeSearchCategory($query, $val)
-    {
-        return $query->where('category_id', 'like', '%' . $val . '%');
-    }
-
-    public function scopeSearchUnit($query, $val)
-    {
-        return $query->where('unit_id', 'like', '%' . $val . '%');
-    }
 
 
 

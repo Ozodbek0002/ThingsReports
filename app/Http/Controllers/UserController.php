@@ -10,6 +10,7 @@ use App\Models\Department;
 use App\Models\Role;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -86,6 +87,9 @@ class UserController extends Controller
             'user' => $user,
         ]);
     }
+
+
+
 
     public function edit(User $user)
     {

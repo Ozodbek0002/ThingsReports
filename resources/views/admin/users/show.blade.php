@@ -7,7 +7,8 @@
 
             <div class="card-header">
                 <div class="row">
-                    <div class="col-10"><h1 class="card-title"> {{ $user->department->name }}  > {{ $user->name }} </h1></div>
+                    <div class="col-10"><h1 class="card-title"> {{ $user->department->name }} > {{ $user->name }} >  <a href="{{ route('admin.ShowUserProducts', $user->id  )}}"> Barchasi </a> </h1> </div>
+
                 </div>
 
                 <hr>
@@ -34,6 +35,7 @@
                             </tr>
 
                         @endforeach
+
                         </tbody>
                     </table>
 

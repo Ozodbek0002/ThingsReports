@@ -16,6 +16,8 @@ class ProductController extends Controller
         return view('admin.products.index', [
             'products' => $products,
         ]);
+
+
     }
 
 
@@ -61,10 +63,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::find($id);
-        return view('admin.products.show', [
-            'product' => $product,
-        ]);
+
     }
 
 
