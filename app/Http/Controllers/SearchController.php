@@ -28,9 +28,9 @@ class SearchController extends Controller
 
         return view('admin.products.index', [
             'products' => $products,
-            'user'=>null,
             'from_date' => $request->from_date,
             'to_date' => $request->to_date,
+            'user'=>null,
         ]);
 
     }

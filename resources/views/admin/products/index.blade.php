@@ -36,7 +36,7 @@
                     <div class=" container align-content-center">
                         <div class="col-md-6 ">
 
-                            <form action="{{ route('admin.SearchProducts') }}" method="post">
+                            <form action="{{ route('admin.SearchProduct') }}" method="post">
                                 @csrf
                                 <div class="input-group">
 
