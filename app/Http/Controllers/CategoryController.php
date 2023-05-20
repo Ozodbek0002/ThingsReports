@@ -45,6 +45,7 @@ class CategoryController extends Controller
         $products = Product::where('category_id', $id)->paginate(5);
         return view('admin.products.index', [
             'products'=>$products,
+            'user'=>null,
         ]);
     }
 

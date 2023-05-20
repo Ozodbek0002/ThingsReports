@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\History;
+use Illuminate\Support\Facades\DB;
+
 
 class SearchController extends Controller
 {
@@ -20,11 +22,13 @@ class SearchController extends Controller
 
     }
 
-    public function SearchProduct(Request $request){
+    public function SearchProduct(Request $request)
+    {
         $products = Product::whereDate('created_at', '>=', $request->from_date)->whereDate('created_at', '<=', $request->to_date)->paginate(10);
 
-        return view('admin.products.index',[
-            'products'=>$products,
+        return view('admin.products.index', [
+            'products' => $products,
+            'user'=>null,
             'from_date' => $request->from_date,
             'to_date' => $request->to_date,
         ]);
@@ -38,15 +42,23 @@ class SearchController extends Controller
         $products = Product::where('name', 'like', '%' . $request->search . '%')->paginate(10);
         return view('admin.products.index', [
             'products' => $products,
+            'user'=>null,
         ]);
 
     }
 
-    public function ShowUserProducts($id){
+    public function ShowUserProducts($id)
+    {
         $user = User::find($id);
-        $rooms = $user->rooms;
+        $roomIds = $user->rooms->pluck('id')->toArray();
+
+        $paginatedProducts = DB::table('products')
+            ->whereIn('room_id', $roomIds)
+            ->paginate(10); // 10 ta mahsulotni bir sahifada ko'rsatish uchun
+
         return view('admin.products.index', [
-            'products' => $products,
+            'products' => $paginatedProducts,
+            'user'=>$user,
         ]);
     }
 

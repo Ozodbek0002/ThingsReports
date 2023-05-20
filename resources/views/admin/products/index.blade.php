@@ -41,9 +41,9 @@
                                 <div class="input-group">
 
                                     <input type="date" value="{{ $from_date ?? 0 }}" id="from_date" name="from_date"
-                                           class="form-control" required >
+                                           class="form-control" required>
                                     <input type="date" value="{{ $to_date ?? 0 }}" id="to_date" name="to_date"
-                                           class="form-control" required >
+                                           class="form-control" required>
 
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i>
@@ -94,17 +94,24 @@
                                 <td>{{ $product->name  }}</td>
 
                                 <td>
-                                    <a href="{{ route('admin.users.show',$product->room->user->id) }}">
-                                        {{ $product->room->user->name }}
+                                    <a href="{{ route('admin.users.show',$user->id ?? $product->room->user->id) }}">
+                                        {{ $user->name ?? $product->room->user->name }}
                                     </a>
                                 </td>
 
-                                <td>
-                                    <a href="{{ route('admin.rooms.show',$product->room->id) }}">
-                                    {{ $product->room->name }}
-                                    </a>
-
-                                </td>
+                                @if($user==null)
+                                    <td>
+                                        <a href="{{ route('admin.rooms.show',$product->room->id) }}">
+                                            {{ $product->room->name }}
+                                        </a>
+                                    </td>
+                                @else
+                                    <td>
+                                        <a href="{{ route('admin.rooms.show',$product->room_id) }}">
+                                            {{ $product->room_id }}
+                                        </a>
+                                    </td>
+                                @endif
 
 
                                 <td>{{ $product->code }}</td>
@@ -177,11 +184,13 @@
                                                 <table class="table table-bordered text-center">
                                                     <thead>
                                                     <tr>
-
-                                                        <th class="" scope="col"> Bo'lim</th>
-                                                        <th class="" scope="col"> Kategoriya</th>
+                                                        @if($user==null)
+                                                            <th class="" scope="col"> Bo'lim</th>
+                                                        @else
+                                                            <th class="" scope="col"> Kategoriya</th>
+                                                            <th class="" scope="col"> Birligi</th>
+                                                        @endif
                                                         <th class="" scope="col"> Miqdori</th>
-                                                        <th class="" scope="col"> Birligi</th>
 
                                                     </tr>
                                                     </thead>
@@ -190,21 +199,25 @@
                                                     <tr>
 
 
-                                                        <td>
-                                                            <a href="{{ route('admin.departments.show',$product->room->user->department->id) }}">
-                                                            {{ $product->room->user->department->name }}
-                                                            </a>
-                                                        </td>
+                                                        @if($user==null)
+                                                            <td>
+                                                                <a href="{{ route('admin.departments.show',$product->room->user->department->id) }}">
+                                                                    {{ $product->room->user->department->name }}
+                                                                </a>
+                                                            </td>
 
-                                                        <td>
-                                                            <a href="{{ route('admin.categories.show',$product->category->id) }}">
-                                                            {{ $product->category->name }}
-                                                            </a>
-                                                        </td>
+                                                        @else
+                                                            <td>
+                                                                <a href="{{ route('admin.categories.show',$product->category_id) }}">
+                                                                    {{ $product->category_id }}
+                                                                </a>
+                                                            </td>
+
+                                                            <td>{{ $product->unit_id }}</td>
+
+                                                        @endif
 
                                                         <td> {{ $product->amount }} </td>
-
-                                                        <td>{{ $product->unit->name }}</td>
 
 
                                                     </tr>
@@ -215,7 +228,6 @@
                                                 </table>
                                             </div>
                                         </div>
-
 
                         @endforeach
 
