@@ -12,7 +12,7 @@
 
                     <div class="col-md-6">
 
-                        <form action="/" method="post">
+                        <form action="{{route('admin.SearchHistories')}}"  method="post">
                             @csrf
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control" placeholder="Qidirish...">
@@ -91,17 +91,33 @@
 
                                 <td>{{ $history->name  }}</td>
 
-                                <td>{{ $history->fromRoom->user->name }}</td>
+                                <td>
+                                    <a href="{{ route('admin.users.show',$history->fromRoom->user) }}">
+                                    {{ $history->fromRoom->user->name }}
+                                    </a>
+                                </td>
 
-                                <td>{{ $history->fromRoom->name }}</td>
+                                <td>
+                                    <a href="{{ route('admin.rooms.show',$history->fromRoom) }}">
+                                    {{ $history->fromRoom->name }}
+                                    </a>
+                                </td>
 
 
                                 <td>{{ $history->product->name }}</td>
 
 
-                                <td>{{ $history->toRoom->user->name }}</td>
+                                <td>
+                                    <a href="{{ route('admin.users.show',$history->toRoom->user) }}">
+                                    {{ $history->toRoom->user->name }}
+                                    </a>
+                                </td>
 
-                                <td>{{ $history->toRoom->name }}</td>
+                                <td>
+                                    <a href="{{ route('admin.rooms.show',$history->toRoom) }}">
+                                    {{ $history->toRoom->name }}
+                                    </a>
+                                </td>
 
 
                                 <td>{{ $history->created_at }}</td>

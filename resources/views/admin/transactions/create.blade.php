@@ -37,10 +37,17 @@
                             <label for=""> Masul inson </label>
                             <select name="user_id" id="department_users" class="form-control">
 
-                                @foreach($users as $c)
-                                    <option value="{{$c->id}}">{{$c->name}}</option>
-                                @endforeach
+                                @if(auth()->id() == 1)
+                                    @foreach($users as $c)
+                                        <option value="{{$c->id}}">{{$c->name}}</option>
+                                    @endforeach
+                                @else
+                                        <option value="" > Tanlang </option>
+                                        <option value="{{auth()->id()}}">{{ auth()->user()->name }}</option>
 
+
+
+                                @endif
                             </select>
 
                         </div>

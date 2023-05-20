@@ -12,7 +12,7 @@
 
                     <div class="col-md-6">
 
-                        <form action="/" method="post">
+                        <form action="{{ route('admin.SearchUsers') }}" method="post">
                             @csrf
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control" placeholder="Qidirish...">
@@ -77,8 +77,7 @@
 
                                     @if($user->id != 1)
 
-                                        <a class="btn btn-success btn-sm"
-                                           href="{{ route('admin.users.show',$user->id) }}">
+                                        <a class="btn btn-success btn-sm" href="{{ route('admin.users.show',$user->id) }}">
                                             <span class="btn-label">
                                                   <i class="bx bxs-show"></i>
                                             </span>

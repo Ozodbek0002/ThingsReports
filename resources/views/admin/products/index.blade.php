@@ -186,10 +186,9 @@
                                                     <tr>
                                                         @if($user==null)
                                                             <th class="" scope="col"> Bo'lim</th>
-                                                        @else
-                                                            <th class="" scope="col"> Kategoriya</th>
-                                                            <th class="" scope="col"> Birligi</th>
                                                         @endif
+                                                        <th class="" scope="col"> Kategoriya</th>
+                                                        <th class="" scope="col"> Birligi</th>
                                                         <th class="" scope="col"> Miqdori</th>
 
                                                     </tr>
@@ -205,6 +204,14 @@
                                                                     {{ $product->room->user->department->name }}
                                                                 </a>
                                                             </td>
+
+                                                            <td>
+                                                                <a href="{{ route('admin.categories.show',$product->category_id) }}">
+                                                                    {{ $product->category->name }}
+                                                                </a>
+                                                            </td>
+
+                                                            <td>{{ $product->unit->name }}</td>
 
                                                         @else
                                                             <td>

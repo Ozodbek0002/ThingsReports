@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Services\DataTable;
 
 
@@ -62,7 +63,7 @@ class HistoryController extends Controller
     public function edit($id)
     {
         $history = History::find($id);
-        if ($history->fromRoom->user->id == auth()->user()->id || auth()->user()->id == 1) {
+        if ($history->toRoom->user->id == auth()->user()->id || auth()->user()->id == 1) {
             $users = User::all()->except(1);
             $products = Product::all();
             return view('admin.transactions.edit', [
@@ -98,6 +99,8 @@ class HistoryController extends Controller
 
     public function destroy($id)
     {
+        Gate::authorize('user', auth()->user());
+
         $history = History::find($id);
         $history->delete();
         return redirect()->route('admin.transactions')->with('msg', ' Aperatsiya muvaffaqiyatli o`chirildi.');
