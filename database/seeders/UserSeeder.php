@@ -25,18 +25,18 @@ class UserSeeder extends Seeder
         ]);
 
         $user = User::create([
-            'name' => 'Fayzullo', // 2
-            'email' => 'fayzulla@gmail.com',
-            'password' => Hash::make('fayzulla001'),
+            'name' => 'Umirbek', // 2
+            'email' => 'umrbek@gmail.com',
+            'password' => Hash::make('umrbek001'),
             'phone' => '912770919',
             'role_id' => 2,
             'department_id'=>2, // bugalteriya
         ]);
 
         $user = User::create([
-            'name' => 'Abrorbek',// 3
-            'email' => 'abrorbek@gmail.com',
-            'password' => Hash::make('abrorbek001'),
+            'name' => 'Abdullo',// 3
+            'email' => 'abdullo@gmail.com',
+            'password' => Hash::make('abdullo001'),
             'phone' => '912770919',
             'role_id' => 2,
             'department_id'=>3, // telekamunikatsiya t kafedra
