@@ -77,14 +77,14 @@
     <div class="layout-container">
 
         <!-- Menu -->
-        @include('Admin.sidebar')
+        @include('admin.sidebar')
         <!-- / Menu -->
 
         <!-- Layout container -->
         <div class="layout-page">
 
             <!-- Navbar -->
-            @include('Admin.navbar')
+            @include('admin.navbar')
             <!-- / Navbar -->
 
 
